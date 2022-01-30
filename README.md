@@ -11,10 +11,10 @@
 > Detail guide in [Expo official guide](https://docs.expo.dev/workflow/ios-simulator/).
 
 ## Installation
-1. Go to app store, search for xcode then download and install.
-  > This will take awhile depends on your machine power and speed of the internet.
-2. After installation, open the xcode, then open "Preferences".
-  ![image](https://user-images.githubusercontent.com/25420417/151321321-4ec0e89e-5ff6-4b56-8518-7abc6e0d5583.png)
+1. Go to app store, search for xcode then download and install.  
+  > This will take awhile depends on your machine power and speed of the internet.  
+2. After installation, open the xcode, then open "Preferences".  
+  ![image](https://user-images.githubusercontent.com/25420417/151321321-4ec0e89e-5ff6-4b56-8518-7abc6e0d5583.png). 
 3. Under "Locations" tab, click "Command Line Tools" (dropdown menu) then make sure choose highest version.
 
 ## Running simulator
