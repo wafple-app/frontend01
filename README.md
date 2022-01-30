@@ -103,6 +103,9 @@
   
   Well done :smile:
 
+# Useful tips
+> Welcome to add more tips you found to share.  
+- For macOS, press `command + m` on simulator, it will open up the developer menu. `Ctl + m` for Window users.
 
 # References
 - [React Native](https://reactnative.dev/)
