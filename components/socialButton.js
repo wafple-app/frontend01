@@ -1,9 +1,9 @@
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { Dimensions } from 'react-native';
+import { Dimensions } from 'react-native'; // Need to save in centralized location
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width; // Need to save in centralized location
+const windowHeight = Dimensions.get('window').height; // Need to save in centralized location
 
 const SocialButton = ({
   buttonTitle,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: '100%',
     height: windowHeight / 15,
-    padding: 10,
+    padding: 8,
     flexDirection: 'row',
     borderRadius: 3,
   },
@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
+    fontFamily: 'SourceSansPro-Regular',
   },
 });
