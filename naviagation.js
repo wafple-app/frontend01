@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/pages/Home/HomeScreen";
 import DetailScreen from "./src/pages/Detail/DetailScreen";
+import LoginScreen from "./src/pages/Login/LoginScreen";
 import { Provider as ReduxProvider } from "react-redux";
 
 import configureStore from "./src/redux/store";
@@ -18,6 +19,7 @@ const RootNaviagation = () => {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={DetailScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ReduxProvider>
