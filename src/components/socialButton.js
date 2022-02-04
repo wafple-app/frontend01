@@ -17,7 +17,6 @@ const SocialButton = ({
     <TouchableOpacity
       style={[styles.buttonContainer, {backgroundColor: bgColor}]}
       {...rest}
-      onPress={()=>Alert.alert("Button Pressed")}  
     >
       <View style={styles.iconWrapper}>
         <FontAwesome name={btnType} style={styles.icon} size={22} color={color} />
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     height: windowHeight / 15,
     padding: 8,
     flexDirection: 'row',
-    borderRadius: 3,
+    borderRadius: 7,
   },
   iconWrapper: {
     width: 30,
