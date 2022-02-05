@@ -1,10 +1,13 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Text } from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import RestaurantTab from "./restaurantTab";
 
-function RestaurantScreen({ navigation }) {
+function RestaurantScreen({ navigation }) {    
     return (
         <View style={ styles.container }>
+            <StatusBar style="auto" />
             <View style={ styles.topContainer }>
                 <Text style={ styles.h1 } >Starbucks (SW Marine)</Text>
                 <View style={ styles.resInfoContainer }>
@@ -15,9 +18,7 @@ function RestaurantScreen({ navigation }) {
                     <Text style={[ styles.a, {color: "lightgrey"} ]}> 1000 Reviews </Text>
                 </View>
             </View>
-            <View style={ styles.temp }>
-                <Text>Restaurant Screen</Text>
-            </View>
+                <RestaurantTab />
         </View>
     );
 }
@@ -45,10 +46,4 @@ const styles = StyleSheet.create({
         fontFamily: "SourceSansPro-Regular",
         fontSize: 14
     },
-    temp:{
-        flex: 8,
-        backgroundColor: "white",
-        alignItems: "center", 
-        justifyContent: "center",
-    }
 })

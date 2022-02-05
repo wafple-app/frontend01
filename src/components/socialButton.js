@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View, StyleSheet, Alert} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { Dimensions } from 'react-native'; // Need to save in centralized location
 
