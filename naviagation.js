@@ -20,7 +20,7 @@ const RootNaviagation = () => {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={DetailScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} options={navigationOptions.loginOption}/>
           <Stack.Screen name="Restaurant" component={RestaurantScreen} options={navigationOptions.restaurantOption}/>
         </Stack.Navigator>
       </NavigationContainer>
@@ -39,5 +39,8 @@ const navigationOptions = {
       elevation: 0, // android shadow rate
       shadowOpacity: 0, // ios shadow rate
     }
+  },
+  loginOption: {
+    headerShown:false
   }
 }

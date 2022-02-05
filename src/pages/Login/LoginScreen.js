@@ -2,16 +2,16 @@ import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import SocialButton from '../../components/socialButton';
-import { Dimensions } from 'react-native'; // Need to save in centralized location
 
-const windowWidth = Dimensions.get('window').width; // Need to save in centralized location
-const windowHeight = Dimensions.get('window').height; // Need to save in centralized location
+const bgColor = 'rgba(238, 87, 87, 0.1)'; // THIS MUST BE A GLOBAL VARIABLE
 
 export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
         <View style={styles.topContainer}>
-            <Text style={styles.text}>Login Screen</Text>
+            <Image 
+                source={require('../../assets/welcome_logo.png')}
+            />
             <StatusBar style="auto" />
         </View>
         
@@ -19,15 +19,7 @@ export default function LoginScreen({ navigation }) {
             <Text style={styles.text}>Login with SNS</Text>
             <View style={styles.buttonContainer}>
                 <SocialButton 
-                    buttonTitle="Sign Up with Facebook"
-                    btnType="facebook"
-                    color="#4867aa"
-                    backgroundColor="#e6eaf4"
-                    onPress={()=>Alert.alert("누르셨습니까?")}
-                />
-                
-                <SocialButton 
-                    buttonTitle="Sign Up with Google"
+                    buttonTitle="Log In with Google"
                     btnType="google"
                     color="#de4d41"
                     backgroundColor="#f5e7ea"
@@ -35,7 +27,15 @@ export default function LoginScreen({ navigation }) {
                 />
 
                 <SocialButton 
-                    buttonTitle="Sign Up with Apple"
+                    buttonTitle="Log In with Facebook"
+                    btnType="facebook"
+                    color="#4867aa"
+                    backgroundColor="#e6eaf4"
+                    onPress={()=>Alert.alert("누르셨습니까?")}
+                />
+
+                <SocialButton 
+                    buttonTitle="Log In with Apple"
                     btnType="apple"
                     color="#ffffff"
                     backgroundColor="#000000"
@@ -56,6 +56,7 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: bgColor,
     },
     text: {
         fontSize: 15,
@@ -65,13 +66,12 @@ const styles = StyleSheet.create({
         flex: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: "#EEEEEE"
     },
     bottomContainer:{
         flex: 7,
         padding: 30,
-        borderTopStartRadius: 10,
-        borderTopEndRadius: 10,
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
         backgroundColor: "white",
         shadowColor: "#000",
         shadowOffset: {
