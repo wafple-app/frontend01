@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer:{
-        flex: 7,
+        flex: 6,
         padding: 30,
         borderTopStartRadius: 20,
         borderTopEndRadius: 20,

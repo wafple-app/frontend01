@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Text } from "react-native";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import RestaurantTab from "./restaurantTab";
@@ -6,6 +7,7 @@ import RestaurantTab from "./restaurantTab";
 function RestaurantScreen({ navigation }) {    
     return (
         <View style={ styles.container }>
+            <StatusBar style="auto" />
             <View style={ styles.topContainer }>
                 <Text style={ styles.h1 } >Starbucks (SW Marine)</Text>
                 <View style={ styles.resInfoContainer }>

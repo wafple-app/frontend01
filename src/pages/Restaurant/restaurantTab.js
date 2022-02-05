@@ -1,8 +1,8 @@
 import React from 'react';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { useWindowDimensions, StyleSheet } from 'react-native';
+import { useWindowDimensions, StyleSheet, View, Text } from 'react-native';
 import InfoRouteView from './infoRouteView';
-import MenuRouteView from './menuRoute';
+import MenuRouteView from './menuRouteView';
 
 const MenuRoute = () => ( <MenuRouteView /> );
 const InfoRoute = () => ( <InfoRouteView /> );
@@ -11,26 +11,6 @@ const renderScene = SceneMap({
     first: MenuRoute,
     second: InfoRoute,
 });
-
-// const renderTabBar = props => {
-//     return (
-//       <TabBar
-//         {...props}
-//         renderLabel={({ focused, route }) => {
-//           return (
-//             <TextView
-//               size={20}
-//               category="Medium"
-//               color={focused ? 'BLACK' : 'GRAY3'}>
-//               {route.title}
-//             </TextView>
-//           );
-//         }}
-//         indicatorStyle={styles.indicatorStyle}
-//         style={styles.tabBar}
-//       />
-//     );
-// };
 
 const RestaurantTab = ( {...tabViewSettings} ) => {
     const layout = useWindowDimensions();
@@ -41,23 +21,32 @@ const RestaurantTab = ( {...tabViewSettings} ) => {
       { key: 'second', title: 'Info' },
     ]);
 
+    // COMPONENTS BELOW REQUIRED TO BE SEPERATED
     return (<TabView
         { ...tabViewSettings }
-        // style={ styles.viewBar }
         style={ { flex: 8 } }
         navigationState={{ index, routes }}
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
-        // renderTabBar={renderTabBar}
+        renderTabBar={props => <TabBar
+            {...props}
+            indicatorStyle={{ backgroundColor: '#E85D04' }}
+            style={{ backgroundColor: 'white', height: 55}}
+            indicatorStyle={{ backgroundColor: '#E85D04', height: 5 }}
+            renderLabel = {({ route, focused, color }) => {
+                return (
+                  <View>
+                    <Text
+                      style={[focused ? {color:"red"} : {color:"black"}]}
+                    >
+                      {route.title}
+                    </Text>
+                  </View>
+                )
+                }}
+        />}
     />);
 };
 
 export default RestaurantTab;
-
-// const styles = StyleSheet.create({
-//     viewBar: {
-//         flex: 8,
-//         backgroundColor: "white",
-//     }
-// });
