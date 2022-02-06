@@ -5,6 +5,7 @@ import HomeScreen from "./src/pages/Home/HomeScreen";
 import DetailScreen from "./src/pages/Detail/DetailScreen";
 import LoginScreen from "./src/pages/Login/LoginScreen";
 import RestaurantScreen from "./src/pages/Restaurant/RestaurantScreen";
+import FooterNavigation from "./src/components/FooterNavigation";
 import { Provider as ReduxProvider } from "react-redux";
 
 import configureStore from "./src/redux/store";
@@ -20,8 +21,9 @@ const RootNaviagation = () => {
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={DetailScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} options={navigationOptions.loginOption}/>
-          <Stack.Screen name="Restaurant" component={RestaurantScreen} options={navigationOptions.restaurantOption}/>
+          <Stack.Screen name="Login" component={LoginScreen} options={navigationOptions.loginOption} />
+          <Stack.Screen name="Restaurant" component={RestaurantScreen} options={navigationOptions.restaurantOption} />
+          <Stack.Screen name="LandingPage" component={FooterNavigation} options={navigationOptions.LandingPageOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </ReduxProvider>
@@ -41,6 +43,9 @@ const navigationOptions = {
     }
   },
   loginOption: {
-    headerShown:false
+    headerShown: false
+  },
+  LandingPageOptions: {
+    headerShown: false
   }
 }
