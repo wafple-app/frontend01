@@ -18,9 +18,8 @@ const RootNaviagation = () => {
   return (
     <ReduxProvider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailScreen} />
+        <Stack.Navigator initialRouteName="LandingPage">
+          {/* <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={DetailScreen} />
           <Stack.Screen
             name="Login"
@@ -31,7 +30,7 @@ const RootNaviagation = () => {
             name="Restaurant"
             component={RestaurantScreen}
             options={navigationOptions.restaurantOption}
-          />
+          /> */}
           <Stack.Screen
             name="LandingPage"
             component={FooterNavigation}
