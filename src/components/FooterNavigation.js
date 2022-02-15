@@ -1,10 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 import { StyleSheet } from "react-native";
-import { BottomNavigation, Text } from 'react-native-paper';
-import ContentScreen from '../pages/Home/ContentScreen';
-import Profile from '../pages/Profile/Profile';
+import { BottomNavigation, Text } from "react-native-paper";
+import ContentScreen from "../pages/Home/ContentScreen";
+import Profile from "../pages/Profile/Profile";
+import HomeScreen from "../pages/Home/HomeScreen";
 
-const HomeRoute = () => ContentScreen(<Text>Home</Text>);
+const HomeRoute = () => ContentScreen(<HomeScreen />);
 
 const SearchRoute = () => ContentScreen(<Text>Search</Text>);
 
@@ -15,10 +16,10 @@ const ProfileRoute = () => ContentScreen(<Profile />);
 const FooterNavigation = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'home', title: 'Home', icon: 'home' },
-    { key: 'search', title: 'Search', icon: 'magnify' },
-    { key: 'add_review', title: 'Add Review', icon: 'plus-circle-outline' },
-    { key: 'profile', title: 'Profile', icon: 'account-circle-outline' },
+    { key: "home", title: "Home", icon: "home" },
+    { key: "search", title: "Search", icon: "magnify" },
+    { key: "add_review", title: "Add Review", icon: "plus-circle-outline" },
+    { key: "profile", title: "Profile", icon: "account-circle-outline" },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
@@ -43,6 +44,6 @@ export default FooterNavigation;
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    backgroundColor: '#ffffff'
-  }
+    backgroundColor: "#ffffff",
+  },
 });
