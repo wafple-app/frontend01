@@ -44,7 +44,7 @@ export default function LoginScreen({ navigation }) {
             </View>
             <TouchableOpacity 
                 style={styles.skipButton}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => navigation.navigate("Onboarding")}
             >
                 <Text style={styles.skipText}>Skip now</Text>
             </TouchableOpacity>

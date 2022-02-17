@@ -1,14 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "./src/pages/Home/HomeScreen";
-import DetailScreen from "./src/pages/Detail/DetailScreen";
 import LoginScreen from "./src/pages/Login/LoginScreen";
-import RestaurantScreen from "./src/pages/Restaurant/RestaurantScreen";
-import FooterNavigation from "./src/components/FooterNavigation";
+import Onboarding from "./src/pages/Onboarding/Onboarding";
 import { Provider as ReduxProvider } from "react-redux";
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import configureStore from "./src/redux/store";
+import LandingPageNavigation from "./src/pages/LandingPage/LandingPageNavigation";
 
 const store = configureStore();
 
@@ -17,15 +16,15 @@ const RootNaviagation = () => {
 
   return (
     <ReduxProvider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Details" component={DetailScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} options={navigationOptions.loginOption} />
-          <Stack.Screen name="Restaurant" component={RestaurantScreen} options={navigationOptions.restaurantOption} />
-          <Stack.Screen name="LandingPage" component={FooterNavigation} options={navigationOptions.LandingPageOptions} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Login'>
+            <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
+            <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
     </ReduxProvider>
   );
 };
@@ -46,6 +45,12 @@ const navigationOptions = {
     headerShown: false
   },
   LandingPageOptions: {
+    headerShown: false
+  },
+  OnboardingPageOptions: {
+    headerShown: false
+  },
+  LandingPageNavigationOptions: {
     headerShown: false
   }
 }

@@ -1,0 +1,5 @@
+Questions to ask
+- Are we disabling go back from main to onboarding? Same for onboarding to login
+  Current flow: Login -> onboarding -> main
+
+- On Android, only first time click on profile works then not working (button will gone)
