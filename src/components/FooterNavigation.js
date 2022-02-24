@@ -50,6 +50,6 @@ export default FooterNavigation;
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    backgroundColor: '#ffffff'
-  }
+    backgroundColor: "#ffffff",
+  },
 });

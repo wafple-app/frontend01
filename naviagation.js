@@ -32,16 +32,16 @@ export default RootNaviagation;
 
 const navigationOptions = {
   restaurantOption: {
-    title: '',
+    title: "",
     headerShadowVisible: false,
     headerStyle: {
-      backgroundColor: '#FFF2DF', // THIS NEED TO BE IN GLOBAL VARIABLE ### ATTENTION REQUIRED ###
+      backgroundColor: "#FFF2DF", // THIS NEED TO BE IN GLOBAL VARIABLE ### ATTENTION REQUIRED ###
       elevation: 0, // android shadow rate
       shadowOpacity: 0, // ios shadow rate
-    }
+    },
   },
   loginOption: {
-    headerShown: false
+    headerShown: false,
   },
   LandingPageOptions: {
     headerShown: false
