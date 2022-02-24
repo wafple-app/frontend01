@@ -1,67 +1,54 @@
-import React from "react";
-import { View, FlatList, ScrollView } from "react-native";
-import Searchbar from "../../components/Searchbar";
-import Header from "../../components/Header";
-import Categories from "../../components/Categories";
-import FoodItem from "./FoodItem";
-
-const mockFoods = [
-  {
-    name: "Lasagna",
-    index: 1,
-    image:
-      "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
-  },
-  {
-    name: "Tandoori Chicken",
-    index: 2,
-    image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
-  },
-  {
-    name: "Chilaquiles",
-    index: 3,
-    image:
-      "https://i2.wp.com/chilipeppermadness.com/wp-content/uploads/2020/11/Chilaquales-Recipe-Chilaquiles-Rojos-1.jpg",
-  },
-];
+import React, { useState } from "react";
+import { View, Image, Text, SafeAreaView } from "react-native";
+import { TextInput, Button } from "react-native-paper";
+import Menus from "../Menu/Menus";
 
 function HomeScreen({ navigation }) {
+  // Need to fix the default to current location
+  const [location, setLocation] = useState('234 Kingsway, Burnaby');
+
   return (
-    <View>
-      <Header />
-      <Searchbar />
-      <Categories />
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <FlatList
-          columnWrapperStyle={{ justifyContent: "space-around" }}
-          showsVerticalScrollIndicator={false}
-          numColumns={3}
-          data={mockFoods}
-          renderItem={({ item }) => {
-            return <FoodItem food={item} />;
-          }}
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* <View> */}
+      <View style={{ paddingVertical: 10, maxHeight: 44, flex: 1, alignItems: 'center' }}>
+        <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />
+      </View>
+      <View style={{ maxHeight: 50 }}>
+        <TextInput
+          mode='outlined'
+          style={{ height: 46, backgroundColor: 'rgba(238, 87, 87, 0.1)' }}
+          activeOutlineColor='#EE5757'
+          outlineColor='rgba(238, 87, 87, 0)'
+          placeholder='Location'
+          defaultValue={location}
+          left={<Image style={{ width:23, height: 23 }} source={require("../../assets/wafple_marker_icon.png")} />}
         />
-      </ScrollView>
-
-      {/* 
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-      <Button
-        title="Go to Login"
-        onPress={() => navigation.navigate("Login")}
-      />
-      <Button
-        title="Go to Restaurant"
-        onPress={() => navigation.navigate("Restaurant")}
-      />
-      <Button
-        title="Go to Landing Page"
-        onPress={() => navigation.navigate("LandingPage")}
-      /> */}
-    </View>
+      </View>
+      <View style={{ flex: 1 }}>
+        <Menus />
+      </View>
+      {/* <View style={{ flex: 1, backgroundColor: 'green'}}>
+        <Text>Picture</Text>
+      </View> */}
+        {/* <Text>Home Screen</Text>
+        <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate("Details")}
+        />
+        <Button
+          title="Go to Login"
+          onPress={() => navigation.navigate("Login")}
+        />
+        <Button
+          title="Go to Restaurant"
+          onPress={() => navigation.navigate("Restaurant")}
+        />
+        <Button
+          title="Go to Landing Page"
+          onPress={() => navigation.navigate("LandingPage")}
+        /> */}
+      {/* </View> */}
+    </SafeAreaView>
   );
 }
 

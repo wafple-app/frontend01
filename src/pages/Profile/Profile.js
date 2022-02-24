@@ -1,9 +1,18 @@
 import * as React from 'react';
-import { Text } from "react-native";
+import { Text, View } from "react-native";
+import { Button } from 'react-native-paper';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
+
     return (
-        <Text>This is the profile page</Text>
+        <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: 'red', justifyContent: 'space-between'}}>
+                <Text style={{backgroundColor: 'blue'}}>This is the profile page</Text>
+                <Button onPress={() => {navigation.navigate("MenuPage");}}>
+                    Test
+                </Button>
+            </View>
+        </View>
     );
 };
 

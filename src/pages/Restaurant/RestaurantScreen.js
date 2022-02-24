@@ -8,6 +8,7 @@ function RestaurantScreen({ navigation }) {
     return (
         <View style={ styles.container }>
             <StatusBar style="auto" />
+            <View style={{ flex: 2 }}></View>
             <View style={ styles.topContainer }>
                 <Text style={ styles.h1 } >Starbucks (SW Marine)</Text>
                 <View style={ styles.resInfoContainer }>
