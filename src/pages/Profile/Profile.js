@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { Button } from 'react-native-paper';
 
 const Profile = ({navigation}) => {
-console.log(navigation);
+
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 1, backgroundColor: 'red', justifyContent: 'space-between'}}>

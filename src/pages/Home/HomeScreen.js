@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Image, Text, SafeAreaView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import Menus from "../Menu/Menus";
 
 function HomeScreen({ navigation }) {
   // Need to fix the default to current location
@@ -22,6 +23,9 @@ function HomeScreen({ navigation }) {
           defaultValue={location}
           left={<Image style={{ width:23, height: 23 }} source={require("../../assets/wafple_marker_icon.png")} />}
         />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Menus />
       </View>
       {/* <View style={{ flex: 1, backgroundColor: 'green'}}>
         <Text>Picture</Text>

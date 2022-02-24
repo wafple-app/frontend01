@@ -6,6 +6,7 @@ import SocialButton from '../../components/socialButton';
 const bgColor = 'rgba(238, 87, 87, 0.1)'; // THIS MUST BE A GLOBAL VARIABLE
 
 export default function LoginScreen({ navigation }) {
+    console.log("login");
   return (
     <View style={styles.container}>
         <View style={styles.topContainer}>

@@ -1,20 +1,24 @@
 import * as React from "react";
 import { StyleSheet, Image } from "react-native";
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ProfileNavigation from "../Profile/ProfileNavigation";
 import HomeScreen from "../Home/HomeScreen";
 import SearchScreen from "../Home/SearchScreen";
 import AddReviewScreen from "../Home/AddReviewScreen";
 
+const Tab = createBottomTabNavigator();
 const LandingPageNavigation = props => {
-    const Tab = createMaterialBottomTabNavigator();
 
     return (
         <Tab.Navigator
             activeColor='#EE5757'
             shifting={false}
             barStyle={style.bottomNavigationStyle}
+            backBehavior='history'
+            screenOptions={{
+                tabBarActiveTintColor: '#EE5757',
+            }}
         >
             <Tab.Screen
                 name='Home'
@@ -30,7 +34,8 @@ const LandingPageNavigation = props => {
                                 height: 26
                             }}
                         />
-                    )
+                    ),
+                    headerShown: false
                 }}
             />
             <Tab.Screen
@@ -40,7 +45,8 @@ const LandingPageNavigation = props => {
                     tabBarLabel: 'Search',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name='magnify' color={color} size={26} />
-                    )
+                    ),
+                    headerShown: false
                 }}
             />
             <Tab.Screen
@@ -50,7 +56,8 @@ const LandingPageNavigation = props => {
                     tabBarLabel: 'Add Review',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name='plus-circle-outline' color={color} size={26} />
-                    )
+                    ),
+                    headerShown: false
                 }}
             />
             <Tab.Screen
@@ -60,7 +67,8 @@ const LandingPageNavigation = props => {
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name='account-circle-outline' color={color} size={26} />
-                    )
+                    ),
+                    headerShown: false
                 }}
             />
         </Tab.Navigator>

@@ -10,10 +10,9 @@ import configureStore from "./src/redux/store";
 import LandingPageNavigation from "./src/pages/LandingPage/LandingPageNavigation";
 
 const store = configureStore();
+const Stack = createNativeStackNavigator();
 
 const RootNaviagation = () => {
-  const Stack = createNativeStackNavigator();
-
   return (
     <ReduxProvider store={store}>
       <PaperProvider>
