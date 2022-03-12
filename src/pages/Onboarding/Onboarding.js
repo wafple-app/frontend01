@@ -10,7 +10,7 @@ const Onboarding = props => {
             <View>
                 <Text>This is onboarding page.</Text>
                 <Button onPress={() => {navigation.navigate('Login');}} >Move to login page</Button>
-                <Button onPress={() => {navigation.navigate('LandingPageNavigation');}} >Move to ladning page</Button>
+                <Button onPress={() => {navigation.navigate('LandingPageNavigation');}} >Move to landing page</Button>
             </View>
         </SafeAreaView>
     )

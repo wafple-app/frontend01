@@ -1,67 +1,155 @@
 import React from "react";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-import SocialButton from '../../components/socialButton';
+import { ImageBackground, StyleSheet, View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 
-const bgColor = 'rgba(238, 87, 87, 0.1)'; // THIS MUST BE A GLOBAL VARIABLE
+{/* Hailey: make percent_100, screenWidth, screenHeight as common variables*/}
+const percent_100 = '100%';
 
 export default function LoginScreen({ navigation }) {
     console.log("login");
+    
   return (
+      
     <View style={styles.container}>
-        <View style={styles.topContainer}>
-            <Image 
-                source={require('../../assets/welcome_logo.png')}
-            />
-            <StatusBar style="auto" />
-        </View>
-        
-        <View style={styles.bottomContainer}>
-            <Text style={styles.text}>Login with SNS</Text>
-            <View style={styles.buttonContainer}>
-                <SocialButton 
-                    buttonTitle="Log In with Google"
-                    btnType="google"
-                    color="#de4d41"
-                    backgroundColor="#f5e7ea"
-                    onPress={() => navigation.navigate("Home")}
+        <ImageBackground source={require('../../assets/login-bg.png')} resizeMode="cover" style={styles.loginBgImg}>
+            {/* login - bg-start*/}
+            <View style={styles.topContainer}>
+                <Image style={{ height: 230, width: 170 }}
+                    source={require('../../assets/welcome_logo.png')}
                 />
-
-                <SocialButton 
-                    buttonTitle="Log In with Facebook"
-                    btnType="facebook"
-                    color="#4867aa"
-                    backgroundColor="#e6eaf4"
-                    onPress={()=>Alert.alert("누르셨습니까?")}
-                />
-
-                <SocialButton 
-                    buttonTitle="Log In with Apple"
-                    btnType="apple"
-                    color="#ffffff"
-                    backgroundColor="#000000"
-                    onPress={()=>Alert.alert("누르셨습니까?")}
-                />
+                <StatusBar style="auto" />
             </View>
-            <TouchableOpacity 
-                style={styles.skipButton}
-                onPress={() => navigation.navigate("Onboarding")}
-            >
-                <Text style={styles.skipText}>Skip now</Text>
-            </TouchableOpacity>
-        </View>
+            {/* login - bg-end*/}
+
+            {/* login - login content-start */}
+            <View style={styles.bottomContainer}>
+                <Text style={styles.loginText}>Login</Text>
+                <View tyle={[{flex:1}, styles.loginButtonWrap]} >
+                    <View style={[{backgroundColor:"#fff"}, styles.loginBtn]} >
+                        <TouchableOpacity style={[styles.inr, styles.flexCenterCenter]}>
+                            <Image style={[{ height: 24, width: 24 }, styles.positionLeft]} source={require("../../assets/logo-google.png")} />
+                            <Text style={[{color: '#666'}, styles.loginBtnText]}>Login in with Google</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[{backgroundColor:"#1877F2"}, styles.loginBtn]} >
+                        <TouchableOpacity  style={[styles.inr, styles.flexCenterCenter]}>
+                            <Image style={[{ height: 24, width: 24 }, styles.positionLeft]} source={require("../../assets/logo-facebook.png")} />
+                            <Text style={[{color: '#fff'}, styles.loginBtnText]}>Login in with Facebook</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[{backgroundColor:"#000000"}, styles.loginBtn]} >
+                        <TouchableOpacity  style={[styles.inr, styles.flexCenterCenter]}>
+                            <Image style={[{ height: 24, width: 24 }, styles.positionLeft]} source={require("../../assets/logo-apple.png")} />
+                            <Text style={[{color: '#fff'}, styles.loginBtnText]}>Login in with Apple</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <TouchableOpacity 
+                    style={styles.skipButton}
+                    onPress={() => navigation.navigate("Onboarding")}
+                >
+                    <Text style={styles.skipText}>Skip now</Text>
+                </TouchableOpacity>
+            </View>
+            {/* login - login content-end */}
+        </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+    //common style
+    inr: {
+        height: 46,
+        marginHorizontal: 16,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        position: 'relative'
+    },
+    positionRight: {
+      position: 'absolute',
+      right: 0,
+      top: 15,
+    },
+    positionLeft: {
+        position: 'absolute',
+        left: 0,
+        top: 10,
+    },
+    font16_R : {
+        fontSize: 16, 
+        color: '#222'
+    },
+    font14_R : {
+        fontSize: 14, 
+        color: '#444',
+        lineHeight: 24
+    },
+    font18_B : {
+        fontSize: 18, 
+        fontWeight: '700',
+        color: '#222'
+    },
+    spaceBetween : {
+      justifyContent: 'space-between'
+    },
+    //main - location
+    locationbar: {
+      backgroundColor: 'rgba(238, 87, 87, 0.1)',
+      height: 46,
+    },
+    locationText: {
+        fontSize: 16,
+        color: '#666',
+    },
+    //login
+    skipText: {
+        textDecorationLine: 'underline',
+        fontFamily: "SourceSansPro-Regular",
+        color: '#888',
+        fontSize: 14,
+    },  
+   
+    recentHistoryTop :{
+        marginBottom: 20
+    },
+    borderCircle :{
+        borderRadius: 50
+    },
+    hidden : {
+        display: 'none'
+    },
+    flexBetweenCenter:{
+        justifyContent: 'space-between',
+        alignItems :'center'
+    },
+    flexCenterCenter:{
+        justifyContent: 'center',
+        alignItems :'center'
+    },
+    loginBtn: {
+    borderRadius: 5,
+    marginBottom: 10
+    },
+    loginBtnText :{
+        fontSize: 16,
+        fontWeight: '500',
+        textAlign:'center'
+    },
+    loginBgImg: {
+        flex: 1,
+        justifyContent: "center"
+    },
     container: {
         flex: 1,
-        backgroundColor: bgColor,
+        width: null,
+        height: null,
     },
-    text: {
-        fontSize: 15,
+    loginText: {
+        fontSize: 18,
         fontFamily: "SourceSansPro-Bold",
+        marginBottom: 18
     },
     topContainer:{
         flex: 10,
@@ -69,8 +157,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bottomContainer:{
-        flex: 6,
-        padding: 30,
+        height: 310,
+        paddingVertical : 20,
+        paddingHorizontal : 16,
         borderTopStartRadius: 20,
         borderTopEndRadius: 20,
         backgroundColor: "white",
@@ -83,7 +172,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 10,
     },  
-    buttonContainer:{
+    loginButtonWrap:{
         alignItems: 'center',
     },
     skipButton: {
@@ -93,6 +182,9 @@ const styles = StyleSheet.create({
     skipText: {
         textDecorationLine: 'underline',
         fontFamily: "SourceSansPro-Regular",
+        color: '#888',
+        fontSize: 14,
     }
+  
 })
 
