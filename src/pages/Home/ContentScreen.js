@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 
 const contentScreen = ContentComponent => {
     return (
         <SafeAreaView style={styles.contentScreenStyle}>
-            {ContentComponent}
+            <ScrollView>
+                {ContentComponent}
+            </ScrollView>
         </SafeAreaView>
     );
 };

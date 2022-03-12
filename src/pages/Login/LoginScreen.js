@@ -6,6 +6,7 @@ import SocialButton from '../../components/socialButton';
 const bgColor = 'rgba(238, 87, 87, 0.1)'; // THIS MUST BE A GLOBAL VARIABLE
 
 export default function LoginScreen({ navigation }) {
+    console.log("login");
   return (
     <View style={styles.container}>
         <View style={styles.topContainer}>
@@ -44,7 +45,7 @@ export default function LoginScreen({ navigation }) {
             </View>
             <TouchableOpacity 
                 style={styles.skipButton}
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => navigation.navigate("Onboarding")}
             >
                 <Text style={styles.skipText}>Skip now</Text>
             </TouchableOpacity>
@@ -94,5 +95,4 @@ const styles = StyleSheet.create({
         fontFamily: "SourceSansPro-Regular",
     }
 })
-
 
