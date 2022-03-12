@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, SafeAreaView, TouchableOpacity} from "react-native";
 import Menus from "../Menu/Menus";
 
-function HomeScreen({ navigation }) {
+const HomeScreen = props => {
   // Need to fix the default to current location
   const locationText = "234 Kingsway, Burnaby";
   const percent_100 = '100%';
@@ -63,11 +63,9 @@ function HomeScreen({ navigation }) {
 
       {/* main menues -start*/}
       <View style={{flex: 1}}>
-        <Menus />
+        <Menus {...props} />
       </View>
       {/* main menues -end*/}
-   
-
     </SafeAreaView>
   );
 }

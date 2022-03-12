@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, ScrollView, Image } from "react-native";
+import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import Menu from "./Menu";
 import { menus as dummyMenus } from "../../../testingData";  // Make sure remove this.
 import {Dimensions} from 'react-native';
 
@@ -9,15 +10,19 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 // This Menus component only have one option for number of columns. That is 3.
 const Menus = props => {
+    const { navigation } = props;
     const menus = dummyMenus.map((item, index) => {
         return (
-            <View
+            <TouchableOpacity
                 key={'menuItem#'+index}
                 style={{
                     width: (screenWidth / 3) - 18 ,
                     maxWidth: percent_100 ,
                     marginBottom: 10,
                     marginRight: (index+1) % 3 === 0 ? 0 : 10,
+                }}
+                onPress={() => {
+                    navigation.navigate('Menu', item);
                 }}
             >
                 <View>
@@ -27,7 +32,7 @@ const Menus = props => {
                     {/* Hailey: need to change the Text style to styles.font14_R */}
                     <Text style={{ fontSize: 14, color: '#444', lineHeight: 24}}>{item.food_name}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     });
 
