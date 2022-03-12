@@ -21,7 +21,7 @@ const Menus = props => {
                 }}
             >
                 <View>
-                    <View style={{overflow:'hidden', paddingBottom: percent_100}}>
+                    <View style={{overflow:'hidden', paddingBottom: percent_100, borderRadius: 5}}>
                         <Image source={item.food_url} style={{ width: percent_100, paddingBottom: percent_100, position: 'absolute', left: 0, borderRadius: 5}} />
                     </View>
                     {/* Hailey: need to change the Text style to styles.font14_R */}
