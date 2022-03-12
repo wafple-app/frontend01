@@ -1,12 +1,14 @@
 import React from "react";
-import { Text, View, ScrollView, Image } from "react-native";
+import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import Menu from "./Menu";
 import { menus as dummyMenus } from "../../../testingData";  // Make sure remove this.
   
 // This Menus component only have one option for number of columns. That is 3.
 const Menus = props => {
+    const { navigation } = props;
     const menus = dummyMenus.map((item, index) => {
         return (
-            <View
+            <TouchableOpacity
                 key={'menuItem#'+index}
                 style={{
                     width: 108,
@@ -14,10 +16,13 @@ const Menus = props => {
                     marginBottom: 10,
                     marginRight: (index+1) % 3 === 0 ? 0 : 10
                 }}
+                onPress={() => {
+                    navigation.navigate('Menu', item);
+                }}
             >
                 <Image source={item.food_url} style={{ width: 108, height: 108 }} />
                 <Text>{item.food_name}</Text>
-            </View>
+            </TouchableOpacity>
         )
     });
 

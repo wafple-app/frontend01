@@ -1,8 +1,10 @@
 import React from "react";
+import { Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/pages/Login/LoginScreen";
 import Onboarding from "./src/pages/Onboarding/Onboarding";
+import Menu from "./src/pages/Menu/Menu";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -21,6 +23,7 @@ const RootNaviagation = () => {
             <Stack.Screen name='Login' component={LoginScreen} />
             <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
             <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
+            <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -51,5 +54,8 @@ const navigationOptions = {
   },
   LandingPageNavigationOptions: {
     headerShown: false
+  },
+  MenuPageNavigationOptions: {
+    headerShown: false,
   }
 }
