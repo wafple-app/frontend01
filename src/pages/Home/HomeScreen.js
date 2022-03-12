@@ -3,13 +3,12 @@ import { View, Image, Text, SafeAreaView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import Menus from "../Menu/Menus";
 
-function HomeScreen({ navigation }) {
+const HomeScreen = props => {
   // Need to fix the default to current location
   const [location, setLocation] = useState('234 Kingsway, Burnaby');
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <View> */}
       <View style={{ paddingVertical: 10, maxHeight: 44, flex: 1, alignItems: 'center' }}>
         <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />
       </View>
@@ -25,29 +24,8 @@ function HomeScreen({ navigation }) {
         />
       </View>
       <View style={{ flex: 1 }}>
-        <Menus />
+        <Menus {...props} />
       </View>
-      {/* <View style={{ flex: 1, backgroundColor: 'green'}}>
-        <Text>Picture</Text>
-      </View> */}
-        {/* <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate("Details")}
-        />
-        <Button
-          title="Go to Login"
-          onPress={() => navigation.navigate("Login")}
-        />
-        <Button
-          title="Go to Restaurant"
-          onPress={() => navigation.navigate("Restaurant")}
-        />
-        <Button
-          title="Go to Landing Page"
-          onPress={() => navigation.navigate("LandingPage")}
-        /> */}
-      {/* </View> */}
     </SafeAreaView>
   );
 }
