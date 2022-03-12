@@ -20,7 +20,7 @@ const RootNaviagation = () => {
       <PaperProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name='Login' component={LoginScreen} />
+            <Stack.Screen name='Login' component={LoginScreen} options={navigationOptions.loginOption}/>
             <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
             <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
             <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
