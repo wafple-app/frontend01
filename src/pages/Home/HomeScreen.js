@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Image, Text, SafeAreaView, TouchableOpacity} from "react-native";
 import Menus from "../Menu/Menus";
+import globalStyles from "../../styles/common";
 
 const HomeScreen = props => {
   // Need to fix the default to current location
@@ -9,40 +10,6 @@ const HomeScreen = props => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-
-      {/* Search result content -start */}
-      <View>
-        <View style={styles.recentHistoryTop}>
-          <View style={[styles.inr, styles.spaceBetween]}>
-            <Text style={styles.font18_B}>
-              Recent History
-            </Text>
-            <TouchableOpacity 
-                onPress={() => navigation.navigate("Onboarding")}
-            >
-            <Text style={styles.skipText}>Skip now</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View>
-          <View style={[styles.inr, {marginBottom: 10, height: 60}]}>
-            <Image style={[{ height: 60, width: 60 }, styles.borderCircle]} source={require("../../assets/wafple-profle-sampleImg.png")} />
-            <Text style={[{marginLeft: 10}, styles.font16_R]}>Wafple User</Text>
-            <TouchableOpacity style={styles.hidden}>
-              <Image style={{ height: 16, width: 16 }} source={require("../../assets/icon-reflesh.png")} />
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.inr, {marginBottom: 10, height: 60}]}>
-            <Image style={[{ height: 60, width: 60 }, styles.borderCircle]} source={require("../../assets/wafple-profle-sampleImg.png")} />
-            <Text style={[{marginLeft: 10}, styles.font16_R]}>Wafple User</Text>
-            <TouchableOpacity style={styles.positionRight}>
-              <Image style={{ height: 16, width: 16 }} source={require("../../assets/icon-reflesh.png")} />
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-      {/* Search result content -end*/}
-
       {/* main Top bar -start*/}
       <View style={[styles.flexCenterCenter ,{ height: 44}]}>
         <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />
@@ -72,42 +39,7 @@ const HomeScreen = props => {
 
 
 const styles = StyleSheet.create({
-  //common style
-  inr: {
-      height: 46,
-      marginHorizontal: 16,
-      flexDirection: 'row',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      position: 'relative'
-  },
-  positionRight: {
-    position: 'absolute',
-    right: 0,
-    top: 15,
-  },
-  positionLeft: {
-      position: 'absolute',
-      left: 0,
-      top: 10,
-  },
-  font16_R : {
-      fontSize: 16, 
-      color: '#222'
-  },
-  font14_R : {
-      fontSize: 14, 
-      color: '#444',
-      lineHeight: 24
-  },
-  font18_B : {
-      fontSize: 18, 
-      fontWeight: '700',
-      color: '#222'
-  },
-  spaceBetween : {
-    justifyContent: 'space-between'
-  },
+  ...globalStyles,
   //main - location
   locationbar: {
     backgroundColor: 'rgba(238, 87, 87, 0.1)',
