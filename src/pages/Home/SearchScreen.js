@@ -4,18 +4,17 @@ import { StyleSheet, Text, View, SafeAreaView, Image, TouchableOpacity } from "r
 import globalStyles from "../../styles/common";
 import { TextInput } from 'react-native-paper';
 import RecentHistory from "../../components/recentHistory";
+import TopLogoView from "../../components/topLogoView";
 
 const SearchScreen = props => {
     const { navigation } = props;
     const [search, setSearch] = useState('Search');
     return (
         <SafeAreaView>
-            {/* Search result content -start */}
             <StatusBar style="auto" />
             <View style={styles.defaultBackground}>
-                <View style={{ paddingVertical: 10, maxHeight: 44, flex: 1, alignItems: 'center' }}>
-                    <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />
-                </View>
+                <TopLogoView />
+
                 <View style={{ maxHeight: 65, }}>
                     <TextInput
                         style={{ height: 40, margin: 15 }}
@@ -44,7 +43,6 @@ const SearchScreen = props => {
                     username = "Search History 2" 
                 />
             </View>
-            {/* Search result content -end*/}
             {/* 
             <View>
                 <Text>This is Search Screen.</Text>
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         color: "grey",
         borderRadius: 20
-    }
+    },
 });
 
 export default SearchScreen;
