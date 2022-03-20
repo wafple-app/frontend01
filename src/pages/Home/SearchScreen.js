@@ -12,11 +12,11 @@ const SearchScreen = props => {
         <SafeAreaView>
             {/* Search result content -start */}
             <StatusBar style="auto" />
-            <View style={{backgroundColor:'white', width:"100%", height:"100%"}}>
+            <View style={styles.defaultBackground}>
                 <View style={{ paddingVertical: 10, maxHeight: 44, flex: 1, alignItems: 'center' }}>
                     <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />
                 </View>
-                <View style={{ maxHeight: 65}}>
+                <View style={{ maxHeight: 65, }}>
                     <TextInput
                         style={{ height: 40, margin: 15 }}
                         activeOutlineColor='#767680'

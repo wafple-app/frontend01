@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 
 const globalStyles = {
     //common style
+    defaultBackground: {
+        backgroundColor:'white', 
+        width:"100%", 
+        height:"100%"
+    },
     inr: {
         height: 46,
         marginHorizontal: 16,
