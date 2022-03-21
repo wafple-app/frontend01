@@ -9,7 +9,7 @@ const HomeScreen = props => {
   const percent_100 = '100%';
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={ styles.defaultBackground }>
       {/* main Top bar -start*/}
       <View style={[styles.flexCenterCenter ,{ height: 44}]}>
         <Image style={{ height: 24, width: 73 }} source={require("../../assets/wafple_letter_logo.png")} />

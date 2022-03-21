@@ -1,7 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar  } from "react-native";
 
 const globalStyles = {
     //common style
+    defaultBackground: {
+        backgroundColor:'white', 
+        width:"100%", 
+        height:"100%",
+        paddingTop: StatusBar.currentHeight,
+    },
     inr: {
         height: 46,
         marginHorizontal: 16,
