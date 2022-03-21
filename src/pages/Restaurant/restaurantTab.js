@@ -38,7 +38,7 @@ const RestaurantTab = ( {...tabViewSettings} ) => {
                 return (
                   <View>
                     <Text
-                      style={[focused ? {color:"red"} : {color:"black"}]}
+                      style={[focused ? {color:"#E85D04"} : {color:"black"}]}
                     >
                       {route.title}
                     </Text>
