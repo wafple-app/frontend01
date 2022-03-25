@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-native";
+import { Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/pages/Login/LoginScreen";
@@ -16,6 +16,8 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const RootNaviagation = () => {
+  store.dispatch({ type: 'setPlatform', payload: Platform });
+
   return (
     <ReduxProvider store={store}>
       <PaperProvider>
