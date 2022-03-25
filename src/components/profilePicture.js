@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 100
+        borderRadius: 100,
+        backgroundColor: "rgba(247, 247, 247, 1)"
     }
 });
