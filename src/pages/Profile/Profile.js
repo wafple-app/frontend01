@@ -20,7 +20,7 @@ const Profile = ({navigation}) => {
                     </View>
                     <View style={styles.editProfileView}>
                         <TouchableOpacity
-                            onPress={()=>{navigation.navigate("Onboarding");}}
+                            onPress={()=>{navigation.navigate("EditProfile");}}
                         >
                             <Text style={styles.editProfileText}>Edit Profile</Text>
                         </TouchableOpacity>
@@ -49,22 +49,22 @@ const Profile = ({navigation}) => {
             <View style={{flex: 6, marginTop: 15, alignItems: 'center'}}>
                 <MenuOption 
                     text="Sign Out"
-                    iconUrl="https://static.thenounproject.com/png/1942259-200.png"
+                    iconUrl={require("../../assets/signin.png")}
                     onPress={()=>{Alert.alert("Sign Out")}}
                 />
                 <MenuOption 
                     text="App Review"
-                    iconUrl="https://static.thenounproject.com/png/1942259-200.png"
+                    iconUrl={require("../../assets/app_review.png")}
                     onPress={()=>{Alert.alert("App Review")}}
                 />
                 <MenuOption 
                     text="Customer Service"
-                    iconUrl="https://static.thenounproject.com/png/1942259-200.png"
+                    iconUrl={require("../../assets/customer_service.png")}
                     onPress={()=>{Alert.alert("Customer Service")}}
                 />
                 <MenuOption 
                     text="WAFPLE News"
-                    iconUrl="https://static.thenounproject.com/png/1942259-200.png"
+                    iconUrl={require("../../assets/wafple_news.png")}
                     onPress={()=>{Alert.alert("WAFPLE News")}}
                 />
             </View>

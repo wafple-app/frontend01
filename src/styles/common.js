@@ -17,9 +17,9 @@ const globalStyles = {
         position: 'relative'
     },
     positionRight: {
-    position: 'absolute',
-    right: 0,
-    top: 15,
+        position: 'absolute',
+        right: 0,
+        top: 15,
     },
     positionLeft: {
         position: 'absolute',
