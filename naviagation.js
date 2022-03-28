@@ -1,10 +1,11 @@
 import React from "react";
-import { Image } from "react-native";
+import { Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/pages/Login/LoginScreen";
 import Onboarding from "./src/pages/Onboarding/Onboarding";
 import Menu from "./src/pages/Menu/Menu";
+import EditProfile from "./src/pages/Profile/EditProfile";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -15,6 +16,8 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const RootNaviagation = () => {
+  store.dispatch({ type: 'setPlatform', payload: Platform });
+
   return (
     <ReduxProvider store={store}>
       <PaperProvider>
@@ -24,6 +27,7 @@ const RootNaviagation = () => {
             <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
             <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
             <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
+            <Stack.Screen name='EditProfile' component={EditProfile} options={navigationOptions.EditProfilePageNavigationOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -57,5 +61,12 @@ const navigationOptions = {
   },
   MenuPageNavigationOptions: {
     headerShown: false,
-  }
+  },
+  EditProfilePageNavigationOptions: {
+    headerStyle: {
+      backgroundColor: "#FEEFEF",
+    },
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 }
