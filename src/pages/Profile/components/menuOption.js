@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const MenuOption = ({
     text,
@@ -12,12 +13,12 @@ const MenuOption = ({
         >
             <View style={ styles.mainView }>
                 <View style={ styles.iconView }>
-                    <Image 
-                        style={{width: '70%', height: '70%'}}
-                        source={{uri: iconUrl}}
+                    <Image
+                        style={{width: '45%', height: '45%'}}
+                        source={iconUrl}
                     />
                 </View>
-                <View style={ styles.textView}>
+                <View style={ styles.textView }>
                     <Text>{text}</Text>
                 </View>
             </View>
@@ -30,12 +31,12 @@ export default MenuOption;
 const styles = StyleSheet.create({
     mainView: {
         flexDirection: "row",
-        width: "90%",
+        width: "95%",
         margin: 5,
         height: 45,
-        borderColor: "pink",
-        borderWidth: 2,
-        borderRadius: 10
+        // borderColor: "pink",
+        // borderWidth: 2,
+        // borderRadius: 5
     },
     iconView: {
         flex: 1,
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     },
     textView: {
         flex: 5,
-        padding: 10,
+        padding: 5,
         justifyContent: 'center'
     }
 });
