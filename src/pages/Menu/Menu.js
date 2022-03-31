@@ -8,12 +8,15 @@ import {
     Text,
     Animated,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
 import StarRating from '../../components/StarRating';
-import { Appbar } from "react-native-paper";
+import FoodReview from './FoodReview';
+// Make sure remove below line later
+import { menuReviews as reviews} from '../../../testingData';
 
-const HEADER_MAX_HEIGHT = 240;
+const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = 84;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
@@ -23,11 +26,14 @@ const Menu = props => {
         restaurant,
         price,
         food_name,
-        rating
+        food_url,
+        rating,
+        ratingCount
     } = route.params;
     const scrollY = useRef(new Animated.Value(0)).current;
     const [isAndroid, setIsAndroid] = useState(false);
-    const platform = useSelector((state) => state.platformReducer.platform.OS);
+    const [menuReviews, setMenuReviews] = useState([]);
+    const platform = useSelector(state => state.platformReducer.platform.OS);
 
     const backButtonOpacity = scrollY.interpolate({
         inputRange: [0, HEADER_SCROLL_DISTANCE],
@@ -58,8 +64,14 @@ const Menu = props => {
         extrapolate: 'clamp',
     });
 
+    const deviceHeight = Dimensions.get('window').height;
+    const deviceWdith = Dimensions.get('window').width;
+
+
     useEffect(() => {
         setIsAndroid(platform === 'android');
+        // Get menus via API
+        setMenuReviews(reviews);
     }, []);
 
     return (
@@ -84,104 +96,24 @@ const Menu = props => {
             </TouchableOpacity>
             <Animated.ScrollView
                 style={isAndroid ? { marginTop: 40 } : {} }
-                contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT - 32 }}
+                contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT - 32, paddingLeft: 10, paddingRight: 10 }}
                 scrollEventThrottle={16}
                 onScroll={Animated.event(
                     [{ nativeEvent: { contentOffset: { y: scrollY } } }],
                     { useNativeDriver: true }
                 )}>
-                {
+                {menuReviews.length === 0 ? (
+                    <View style={styles.noReviewContainer}>
+                        <Text style={styles.noReviewFirstText}>No review found</Text>
+                        <Text style={styles.noReivewSecondText}>Write the first review!</Text>
+                    </View>
+                ) : (
                     <>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
-                        <Text>Menu page</Text>
+                        {menuReviews.map((menuReview) => {
+                            return <FoodReview key={menuReview.user_id} {...menuReview} />;
+                        })}
                     </>
-                }
+                )}
             </Animated.ScrollView>
             <Animated.View
                 style={[styles.header, { transform: [{ translateY: headerTranslateY }] }]}>
@@ -193,7 +125,7 @@ const Menu = props => {
                             transform: [{ translateY: imageTranslateY }],
                         },
                     ]}
-                    source={require('../../assets/pic_food.png')}
+                    source={food_url}
                 />
                 <Animated.View style={[styles.headerContainer, { opacity: imageOpacity }]}>
                     <View><Text style={styles.restauarntNameStyle}>{restaurant.name}</Text></View>
@@ -202,7 +134,7 @@ const Menu = props => {
                         <View><Text style={styles.priceStyle}>{`$${price}`}</Text></View>
                     </View>
                     <View style={styles.ratingContainer}>
-                        <StarRating rating={rating} />
+                        <StarRating rating={rating} ratingCount={ratingCount} />
                     </View>
                 </Animated.View>
             </Animated.View>
@@ -215,10 +147,21 @@ const Menu = props => {
                 ]}>
                 <Text style={styles.title}>{food_name}</Text>
             </Animated.View>
+            <TouchableOpacity
+                style={isAndroid
+                    ? styles.androidViewRestuarantButton(deviceHeight, deviceWdith)
+                    : styles.iosViewRestuarantButton(deviceHeight, deviceWdith)
+                }
+                // TODO: Do something here.
+                onPress={() => { console.log('do something')}}
+            >
+                <Text style={styles.viewRestaurantButtonText}>View Restuarant</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };
 
+// TODO: Clean up the Styles
 const styles = StyleSheet.create({
     headerContainer: {
         flex: 1,
@@ -251,9 +194,22 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'white'
     },
+    noReviewContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: HEADER_MAX_HEIGHT - 32
+    },
+    noReviewFirstText: {
+        color: '#888888',
+        fontSize: 18
+    },
+    noReivewSecondText: {
+        color: '#888888'
+    },
     saveArea: {
         flex: 1,
-        backgroundColor: '#eff3fb',
+        backgroundColor: '#ffffff',
     },
     card: {
         flexDirection: 'row',
@@ -326,6 +282,39 @@ const styles = StyleSheet.create({
     backButtonImage: {
         width: 24,
         height: 24
+    },
+    androidViewRestuarantButton: (deviceHeight, deviceWdith) => ({
+        position: 'absolute',
+        // Device height - height of button - bottom margin that we want to get top margin
+        top: deviceHeight - 54 - 76,
+        // Device width - width of button / 2 to get left margin
+        left: (deviceWdith - 343) / 2,
+        backgroundColor: '#F88585',
+        height: 54,
+        width: 343,
+        borderRadius: 10,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }),
+    iosViewRestuarantButton: (deviceHeight, deviceWdith) => ({
+        position: 'absolute',
+        // Device height - height of button - bottom margin that we want to get top margin
+        top: deviceHeight - 54 - 76,
+        // Device width - width of button / 2 to get left margin
+        left: (deviceWdith - 343) / 2,
+        backgroundColor: '#F88585',
+        height: 54,
+        width: 343,
+        borderRadius: 10,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }),
+    viewRestaurantButtonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '600'
     }
 });
 

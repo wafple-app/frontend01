@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Animated,
+    Image,
     View,
     Text,
     StyleSheet
@@ -10,23 +10,23 @@ import {
  * Star Rating component.
  * 
  * @param {number} rating required
- * @param {number} [numberOfRatings] optional
+ * @param {number} [ratingCount] optional
  * @param {any} [styles] icon, text
  * @returns {JSX.Element} StarRating
  */
 const StarRating = props => {
-    const { rating, numberOfRatings } = props;
+    const { rating, ratingCount } = props;
 
     return (
         <View style={defaultStyles.ratingContainer}>
-            <Animated.Image
+            <Image
                 style={[defaultStyles.starIconStyle, { ...(props.styles && props.styles.icon) }]}
                 source={require('../assets/wafple_star_icon.png')}
             />
-            <Text style={[defaultStyles.starRatingStyle, { ...(props.styles && props.styles.text) }]}>
+            <Text style={[defaultStyles.starRatingStyle, { ...(props.styles && props.styles.rating) }]}>
                 {rating.toFixed(1)}
-                {numberOfRatings ? (
-                    <Text>{` (${numberOfRatings})`}</Text>
+                {ratingCount ? (
+                    <Text style={{ ...(props.styles && props.styles.ratingCount )}}>{` (${ratingCount})`}</Text>
                 ) : (
                     null
                 )}
