@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -7,15 +7,16 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import globalStyles from "../../styles/common";
 import { TextInput } from "react-native-paper";
-import RecentHistory from "../../components/recentHistory";
 import TopLogoView from "../../components/topLogoView";
-import Menus from "../Menu/Menus";
 import { Dimensions } from "react-native";
 
-import { menus as dummyMenus } from "../../../testingData";
+import ProfilePicture from "../../components/profilePicture";
+
+import { menus as dummyMenus, mockUsers } from "../../../testingData";
 
 const SearchScreen = (props) => {
   const { navigation } = props;
@@ -23,17 +24,6 @@ const SearchScreen = (props) => {
 
   const percent_100 = "100%";
   const screenWidth = Dimensions.get("window").width;
-
-  const filteredMenus = dummyMenus.filter((item) => {
-    item.restaurant.name.toLowerCase().includes(search);
-    console.log(
-      "search?",
-      item.restaurant.name.toLowerCase().includes(search),
-      "and key",
-      search
-    );
-  });
-  console.log("filteredMenus:", filteredMenus);
 
   const menus = dummyMenus.map((item, index) => {
     return (
@@ -73,6 +63,78 @@ const SearchScreen = (props) => {
     );
   });
 
+  let results = [];
+
+  if (search !== "") {
+    const users = mockUsers.map(
+      (item) =>
+        item.user_name.toLowerCase().includes(search.toLowerCase()) &&
+        results.push({ ...item, type: "user" })
+    );
+
+    const other = dummyMenus.map(
+      (item) =>
+        item.restaurant.name.toLowerCase().includes(search.toLowerCase()) &&
+        results.push({ ...item, type: "restaurant" })
+    );
+  }
+
+  const searchResults =
+    results.length === 0 ? (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image source={require("../../assets/no_restaurant.png")} />
+      </View>
+    ) : (
+      results.map((item, index) => {
+        console.log("item:", item);
+        return (
+          <TouchableOpacity
+            key={"Item#" + index}
+            style={{
+              width: screenWidth / 3 - 18,
+              maxWidth: percent_100,
+              marginBottom: 10,
+              marginRight: (index + 1) % 3 === 0 ? 0 : 10,
+            }}
+            onPress={() => {
+              item.type === "user"
+                ? navigation.navigate("UserDetail", item)
+                : navigation.navigate("Menu", item);
+            }}
+          >
+            <View
+              style={{
+                marginBottom: 8,
+                height: 60,
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                marginLeft: 15,
+              }}
+            >
+              <ProfilePicture
+                size={60}
+                profileImg={
+                  item.type === "user"
+                    ? require("../../assets/wafple-profle-sampleImg.png")
+                    : item.food_url
+                }
+              />
+              <Text style={{ width: 180, marginLeft: 10 }}>
+                {item.type === "user" ? item.user_name : item.restaurant.name}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        );
+      })
+    );
+
   return (
     <SafeAreaView>
       <StatusBar style="auto" />
@@ -82,8 +144,9 @@ const SearchScreen = (props) => {
         <View style={{ maxHeight: 65 }}>
           <TextInput
             style={{ height: 40, margin: 15 }}
-            activeOutlineColor="#767680"
             outlineColor="rgba(238, 87, 87, 0)"
+            activeOutlineColor="rgba(238, 87, 87, 0)"
+            activeUnderlineColor="#767680"
             placeholder="Search"
             defaultValue={search}
             left={<TextInput.Icon name="magnify" />}
@@ -92,29 +155,48 @@ const SearchScreen = (props) => {
         </View>
 
         {/* main menues -start*/}
-        <View style={{ flex: 1 }}>
-          <View
-            style={{
-              flex: 1,
-              flexGrow: 1,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {search !== "" ? (
             <View
               style={{
-                marginHorizontal: 16,
                 flex: 1,
-                flexWrap: "wrap",
-                flexGrow: 1,
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                paddingTop: 24,
+                width: "100%",
               }}
             >
-              {menus}
+              {searchResults}
             </View>
-          </View>
+          ) : (
+            <ScrollView>
+              <View
+                style={{
+                  flex: 1,
+                  flexGrow: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <View
+                  style={{
+                    marginHorizontal: 16,
+                    flex: 1,
+                    flexWrap: "wrap",
+                    flexGrow: 1,
+                    flexDirection: "row",
+                    justifyContent: "flex-start",
+                    paddingTop: 24,
+                  }}
+                >
+                  {menus}
+                </View>
+              </View>
+            </ScrollView>
+          )}
         </View>
         {/* main menues -end*/}
 
@@ -131,11 +213,6 @@ const SearchScreen = (props) => {
         <RecentHistory username="Search History 2" /> 
         */}
       </View>
-      {/* 
-            <View>
-                <Text>This is Search Screen.</Text>
-                <Button onPress={() => {navigation.goBack();}}>Go back</Button>
-            </View> */}
     </SafeAreaView>
   );
 };
