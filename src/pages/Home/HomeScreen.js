@@ -1,13 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as Location from 'expo-location';
 import { StyleSheet, View, Image, Text, SafeAreaView, TouchableOpacity} from "react-native";
 import Menus from "../Menu/Menus";
 import globalStyles from "../../styles/common";
 
 const HomeScreen = props => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   // Need to fix the default to current location
   const locationText = "234 Kingsway, Burnaby";
   const percent_100 = '100%';
 
+  const getCurrLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+      console.log('status:', status)
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({accuracy: 6,});
+      setLocation(location);
+  };
+
+  useEffect(() => {
+    getCurrLocation();
+  }, []);
+  console.log('location:', location);
+  console.log('errorMsg:', errorMsg);
   return (
     <SafeAreaView style={ styles.defaultBackground }>
       {/* main Top bar -start*/}
@@ -21,7 +41,7 @@ const HomeScreen = props => {
         <View style={styles.inr}>
           <Image style={{ height: 24, width: 24, marginRight: 4}} source={require("../../assets/wafple_marker_icon.png")} />
           <Text numberOfLines={1} style={styles.locationText}>{locationText}</Text>
-          <TouchableOpacity style={styles.positionRight}>
+          <TouchableOpacity style={styles.positionRight} onPress={getCurrLocation}>
             <Image style={{ height: 16, width: 16 }} source={require("../../assets/icon-reflesh.png")} />
           </TouchableOpacity>
         </View>
