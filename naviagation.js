@@ -5,9 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/pages/Login/LoginScreen";
 import Onboarding from "./src/pages/Onboarding/Onboarding";
 import Menu from "./src/pages/Menu/Menu";
+import UserDetail from "./src/pages/Detail/UserDetail";
 import EditProfile from "./src/pages/Profile/EditProfile";
 import { Provider as ReduxProvider } from "react-redux";
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider } from "react-native-paper";
 
 import configureStore from "./src/redux/store";
 import LandingPageNavigation from "./src/pages/LandingPage/LandingPageNavigation";
@@ -16,18 +17,43 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const RootNaviagation = () => {
-  store.dispatch({ type: 'setPlatform', payload: Platform });
+  store.dispatch({ type: "setPlatform", payload: Platform });
 
   return (
     <ReduxProvider store={store}>
       <PaperProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name='Login' component={LoginScreen} options={navigationOptions.loginOption}/>
-            <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
-            <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
-            <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
-            <Stack.Screen name='EditProfile' component={EditProfile} options={navigationOptions.EditProfilePageNavigationOptions} />
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={navigationOptions.loginOption}
+            />
+            <Stack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={navigationOptions.OnboardingPageOptions}
+            />
+            <Stack.Screen
+              name="LandingPageNavigation"
+              component={LandingPageNavigation}
+              options={navigationOptions.LandingPageNavigationOptions}
+            />
+            <Stack.Screen
+              name="Menu"
+              component={Menu}
+              options={navigationOptions.MenuPageNavigationOptions}
+            />
+            <Stack.Screen
+              name="UserDetail"
+              component={UserDetail}
+              options={navigationOptions.UserDetailPageNavigationOptions}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfile}
+              options={navigationOptions.EditProfilePageNavigationOptions}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -51,22 +77,29 @@ const navigationOptions = {
     headerShown: false,
   },
   LandingPageOptions: {
-    headerShown: false
+    headerShown: false,
   },
   OnboardingPageOptions: {
-    headerShown: false
+    headerShown: false,
   },
   LandingPageNavigationOptions: {
-    headerShown: false
+    headerShown: false,
   },
   MenuPageNavigationOptions: {
     headerShown: false,
+  },
+  UserDetailPageNavigationOptions: {
+    headerStyle: {
+      backgroundColor: "#FEEFEF",
+    },
+    justifyContent: "center",
+    alignItems: "center",
   },
   EditProfilePageNavigationOptions: {
     headerStyle: {
       backgroundColor: "#FEEFEF",
     },
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-}
+};
