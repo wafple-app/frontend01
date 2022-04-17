@@ -6,6 +6,7 @@ import LoginScreen from "./src/pages/Login/LoginScreen";
 import Onboarding from "./src/pages/Onboarding/Onboarding";
 import Menu from "./src/pages/Menu/Menu";
 import EditProfile from "./src/pages/Profile/EditProfile";
+import FoodDetail from "./src/pages/Menu/FoodDetail";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -28,6 +29,7 @@ const RootNaviagation = () => {
             <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
             <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
             <Stack.Screen name='EditProfile' component={EditProfile} options={navigationOptions.EditProfilePageNavigationOptions} />
+            <Stack.Screen name='FoodDetail' component={FoodDetail} options={navigationOptions.foodDetailOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -69,4 +71,7 @@ const navigationOptions = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  foodDetailOptions: {
+    headerShown: false
+  }
 }

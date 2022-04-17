@@ -14,7 +14,7 @@ import {
 import StarRating from '../../components/StarRating';
 import FoodReview from './FoodReview';
 // Make sure remove below line later
-import { menuReviews as reviews} from '../../../testingData';
+import { menuReviews as reviews } from '../../../testingData';
 
 const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = 84;
@@ -147,16 +147,29 @@ const Menu = props => {
                 ]}>
                 <Text style={styles.title}>{food_name}</Text>
             </Animated.View>
-            <TouchableOpacity
-                style={isAndroid
+            <View
+                style={
+                    isAndroid
                     ? styles.androidViewRestuarantButton(deviceHeight, deviceWdith)
                     : styles.iosViewRestuarantButton(deviceHeight, deviceWdith)
                 }
-                // TODO: Do something here.
-                onPress={() => { console.log('do something')}}
             >
-                <Text style={styles.viewRestaurantButtonText}>View Restuarant</Text>
-            </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.addReviewButton}
+                    // TODO: Do something here.
+                    // onPress={() => navigation.navigate('Menu', route.params)}
+                    onPress={() => { console.log('do something')}}
+                >
+                    <Text style={styles.addReviewButtonText}>Add Review</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.viewRestuarantButton}
+                    // TODO: Do something here.
+                    onPress={() => { console.log('do something')}}
+                >
+                    <Text style={styles.viewRestuarantButtonText}>View Restuarant</Text>
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 };
@@ -289,13 +302,11 @@ const styles = StyleSheet.create({
         top: deviceHeight - 54 - 76,
         // Device width - width of button / 2 to get left margin
         left: (deviceWdith - 343) / 2,
-        backgroundColor: '#F88585',
         height: 54,
         width: 343,
-        borderRadius: 10,
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }),
     iosViewRestuarantButton: (deviceHeight, deviceWdith) => ({
         position: 'absolute',
@@ -303,16 +314,38 @@ const styles = StyleSheet.create({
         top: deviceHeight - 54 - 76,
         // Device width - width of button / 2 to get left margin
         left: (deviceWdith - 343) / 2,
-        backgroundColor: '#F88585',
         height: 54,
         width: 343,
-        borderRadius: 10,
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    }),
+    addReviewButton: {
+        backgroundColor: '#F88585',
+        height: 54,
+        width: 169,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center'
-    }),
-    viewRestaurantButtonText: {
+    },
+    viewRestuarantButton: {
+        height: 54,
+        width: 169,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderColor: '#F88585',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    addReviewButtonText: {
         color: 'white',
+        fontSize: 18,
+        fontWeight: '600'
+    },
+    viewRestuarantButtonText: {
+        color: '#F88585',
         fontSize: 18,
         fontWeight: '600'
     }

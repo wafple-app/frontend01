@@ -22,7 +22,7 @@ const Menus = props => {
                     marginRight: (index+1) % 3 === 0 ? 0 : 10,
                 }}
                 onPress={() => {
-                    navigation.navigate('Menu', item);
+                    navigation.navigate('FoodDetail', item);
                 }}
             >
                 <View>

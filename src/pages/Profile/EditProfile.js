@@ -7,7 +7,7 @@ import ProfilePicture from '../../components/profilePicture';
 const EditProfile = ({navigation}) => {
 
     return (
-        <View style={[styles.defaultBackground, {paddingTop: 0}]}>
+        <View style={[styles.defaultBackground, {paddingTop: 80}]}>
             <View style={styles.topView}>
                 <ProfilePicture 
                     size={90}
