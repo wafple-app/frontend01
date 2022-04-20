@@ -73,7 +73,7 @@ const FoodDetail = props => {
                     <TouchableOpacity
                         style={styles.viewMoreButton}
                         // TODO: Do something here.
-                        onPress={() => navigation.navigate('Menu', route.params)}
+                        onPress={() => navigation.navigate('FoodReviews', route.params)}
                     >
                         <Text style={styles.viewMoreButtonText}>View More</Text>
                     </TouchableOpacity>

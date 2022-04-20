@@ -20,7 +20,7 @@ const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = 84;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const Menu = props => {
+const FoodReviews = props => {
     const { navigation, route } = props;
     const {
         restaurant,
@@ -156,16 +156,13 @@ const Menu = props => {
             >
                 <TouchableOpacity
                     style={styles.addReviewButton}
-                    // TODO: Do something here.
-                    // onPress={() => navigation.navigate('Menu', route.params)}
-                    onPress={() => { console.log('do something')}}
+                    onPress={() => navigation.navigate('AddReview') }
                 >
                     <Text style={styles.addReviewButtonText}>Add Review</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.viewRestuarantButton}
-                    // TODO: Do something here.
-                    onPress={() => { console.log('do something')}}
+                    onPress={() => navigation.navigate('RestaurantDetail', restaurant) }
                 >
                     <Text style={styles.viewRestuarantButtonText}>View Restuarant</Text>
                 </TouchableOpacity>
@@ -351,4 +348,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Menu;
+export default FoodReviews;

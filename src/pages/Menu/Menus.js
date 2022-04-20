@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
-import Menu from "./Menu";
+import Menu from "./FoodReviews";
 import { menus as dummyMenus } from "../../../testingData";  // Make sure remove this.
 import {Dimensions} from 'react-native';
 

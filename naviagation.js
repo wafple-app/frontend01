@@ -4,9 +4,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./src/pages/Login/LoginScreen";
 import Onboarding from "./src/pages/Onboarding/Onboarding";
-import Menu from "./src/pages/Menu/Menu";
+import FoodReviews from "./src/pages/Menu/FoodReviews";
 import EditProfile from "./src/pages/Profile/EditProfile";
 import FoodDetail from "./src/pages/Menu/FoodDetail";
+import RestaurantDetail from "./src/pages/Restaurant/RestaurantDetail";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -27,9 +28,10 @@ const RootNaviagation = () => {
             <Stack.Screen name='Login' component={LoginScreen} options={navigationOptions.loginOption}/>
             <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
             <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
-            <Stack.Screen name='Menu' component={Menu} options={navigationOptions.MenuPageNavigationOptions} />
+            <Stack.Screen name='FoodReviews' component={FoodReviews} options={navigationOptions.FoodReveiwsPageNavigationOptions} />
             <Stack.Screen name='EditProfile' component={EditProfile} options={navigationOptions.EditProfilePageNavigationOptions} />
             <Stack.Screen name='FoodDetail' component={FoodDetail} options={navigationOptions.foodDetailOptions} />
+            <Stack.Screen name='RestaurantDetail' component={RestaurantDetail} options={navigationOptions.restaurantDetailOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -61,7 +63,7 @@ const navigationOptions = {
   LandingPageNavigationOptions: {
     headerShown: false
   },
-  MenuPageNavigationOptions: {
+  FoodReveiwsPageNavigationOptions: {
     headerShown: false,
   },
   EditProfilePageNavigationOptions: {
@@ -72,6 +74,9 @@ const navigationOptions = {
     alignItems: 'center',
   },
   foodDetailOptions: {
+    headerShown: false
+  },
+  restaurantDetailOptions: {
     headerShown: false
   }
 }
