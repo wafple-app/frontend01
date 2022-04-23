@@ -9,7 +9,7 @@ import EditProfile from "./src/pages/Profile/EditProfile";
 import FoodDetail from "./src/pages/Menu/FoodDetail";
 import RestaurantDetail from "./src/pages/Restaurant/RestaurantDetail";
 import { Provider as ReduxProvider } from "react-redux";
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider } from "react-native-paper";
 
 import configureStore from "./src/redux/store";
 import LandingPageNavigation from "./src/pages/LandingPage/LandingPageNavigation";
@@ -18,20 +18,48 @@ const store = configureStore();
 const Stack = createNativeStackNavigator();
 
 const RootNaviagation = () => {
-  store.dispatch({ type: 'setPlatform', payload: Platform });
+  store.dispatch({ type: "setPlatform", payload: Platform });
 
   return (
     <ReduxProvider store={store}>
       <PaperProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name='Login' component={LoginScreen} options={navigationOptions.loginOption}/>
-            <Stack.Screen name="Onboarding" component={Onboarding} options={navigationOptions.OnboardingPageOptions} />
-            <Stack.Screen name='LandingPageNavigation' component={LandingPageNavigation} options={navigationOptions.LandingPageNavigationOptions} />
-            <Stack.Screen name='FoodReviews' component={FoodReviews} options={navigationOptions.FoodReveiwsPageNavigationOptions} />
-            <Stack.Screen name='EditProfile' component={EditProfile} options={navigationOptions.EditProfilePageNavigationOptions} />
-            <Stack.Screen name='FoodDetail' component={FoodDetail} options={navigationOptions.foodDetailOptions} />
-            <Stack.Screen name='RestaurantDetail' component={RestaurantDetail} options={navigationOptions.restaurantDetailOptions} />
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={navigationOptions.loginOption}
+            />
+            <Stack.Screen
+              name="Onboarding"
+              component={Onboarding}
+              options={navigationOptions.OnboardingPageOptions}
+            />
+            <Stack.Screen
+              name="LandingPageNavigation"
+              component={LandingPageNavigation}
+              options={navigationOptions.LandingPageNavigationOptions}
+            />
+            <Stack.Screen
+              name="FoodReviews"
+              component={FoodReviews}
+              options={navigationOptions.FoodReveiwsPageNavigationOptions}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfile}
+              options={navigationOptions.EditProfilePageNavigationOptions}
+            />
+            <Stack.Screen
+              name="FoodDetail"
+              component={FoodDetail}
+              options={navigationOptions.foodDetailOptions}
+            />
+            <Stack.Screen
+              name="RestaurantDetail"
+              component={RestaurantDetail}
+              options={navigationOptions.restaurantDetailOptions}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
@@ -55,28 +83,35 @@ const navigationOptions = {
     headerShown: false,
   },
   LandingPageOptions: {
-    headerShown: false
+    headerShown: false,
   },
   OnboardingPageOptions: {
-    headerShown: false
+    headerShown: false,
   },
   LandingPageNavigationOptions: {
-    headerShown: false
+    headerShown: false,
   },
   FoodReveiwsPageNavigationOptions: {
     headerShown: false,
+  },
+  UserDetailPageNavigationOptions: {
+    headerStyle: {
+      backgroundColor: "#FEEFEF",
+    },
+    justifyContent: "center",
+    alignItems: "center",
   },
   EditProfilePageNavigationOptions: {
     headerStyle: {
       backgroundColor: "#FEEFEF",
     },
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   foodDetailOptions: {
-    headerShown: false
+    headerShown: false,
   },
   restaurantDetailOptions: {
-    headerShown: false
-  }
-}
+    headerShown: false,
+  },
+};
