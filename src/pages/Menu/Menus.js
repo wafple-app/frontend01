@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
-import Menu from "./Menu";
+import Menu from "./FoodReviews";
 import { menus as dummyMenus } from "../../../testingData";  // Make sure remove this.
 import {Dimensions} from 'react-native';
 
-{/* Hailey: make percent_100, screenWidth, screenHeight as common variables*/}
+{ /* Hailey: make percent_100, screenWidth, screenHeight as common variables*/ }
 const percent_100 = '100%';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -22,7 +22,7 @@ const Menus = props => {
                     marginRight: (index+1) % 3 === 0 ? 0 : 10,
                 }}
                 onPress={() => {
-                    navigation.navigate('Menu', item);
+                    navigation.navigate('FoodDetail', item);
                 }}
             >
                 <View>
