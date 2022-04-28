@@ -36,7 +36,7 @@ const SearchScreen = (props) => {
           marginRight: (index + 1) % 3 === 0 ? 0 : 10,
         }}
         onPress={() => {
-          navigation.navigate("Menu", item);
+          navigation.navigate("FoodDetail", item);
         }}
       >
         <View>
@@ -105,7 +105,7 @@ const SearchScreen = (props) => {
             onPress={() => {
               item.type === "user"
                 ? navigation.navigate("UserDetail", item)
-                : navigation.navigate("Menu", item);
+                : navigation.navigate("FoodDetail", item);
             }}
           >
             <View
@@ -154,7 +154,6 @@ const SearchScreen = (props) => {
           />
         </View>
 
-        {/* main menues -start*/}
         <View
           style={{
             flex: 1,
@@ -163,14 +162,9 @@ const SearchScreen = (props) => {
           }}
         >
           {search !== "" ? (
-            <View
-              style={{
-                flex: 1,
-                width: "100%",
-              }}
-            >
+            <ScrollView style={{ flex: 1, width: "100%" }}>
               {searchResults}
-            </View>
+            </ScrollView>
           ) : (
             <ScrollView>
               <View
@@ -198,20 +192,6 @@ const SearchScreen = (props) => {
             </ScrollView>
           )}
         </View>
-        {/* main menues -end*/}
-
-        {/* 
-        Need to delete 
-        <View style={[styles.inr, styles.spaceBetween]}>
-          <Text style={styles.font18_B}>Recent History</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Onboarding")}>
-            <Text style={styles.removeAllbutton}>remove all</Text>
-          </TouchableOpacity>
-        </View>
-
-        <RecentHistory username="Search History 1" />
-        <RecentHistory username="Search History 2" /> 
-        */}
       </View>
     </SafeAreaView>
   );
