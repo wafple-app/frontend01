@@ -7,6 +7,7 @@ import Onboarding from "./src/pages/Onboarding/Onboarding";
 import FoodReviews from "./src/pages/Menu/FoodReviews";
 import EditProfile from "./src/pages/Profile/EditProfile";
 import FoodDetail from "./src/pages/Menu/FoodDetail";
+import UserDetail from "./src/pages/Detail/UserDetail";
 import RestaurantDetail from "./src/pages/Restaurant/RestaurantDetail";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -49,6 +50,11 @@ const RootNaviagation = () => {
               name="EditProfile"
               component={EditProfile}
               options={navigationOptions.EditProfilePageNavigationOptions}
+            />
+            <Stack.Screen
+              name="UserDetail"
+              component={UserDetail}
+              options={navigationOptions.foodDetailOptions}
             />
             <Stack.Screen
               name="FoodDetail"
