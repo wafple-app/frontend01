@@ -196,116 +196,178 @@ const FoodReviews = (props) => {
 // TODO: Clean up the Styles
 const styles = StyleSheet.create({
   headerContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    paddingHorizontal: 16,
-    paddingBottom: 18,
+      flex: 1,
+      justifyContent: 'flex-end',
+      paddingHorizontal: 16,
+      paddingBottom: 18
   },
   restauarntNameStyle: {
-    fontSize: 16,
-    color: "white",
+      fontSize: 16,
+      color: 'white'
   },
   foodInfoContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+      flexDirection: 'row',
+      justifyContent: 'space-between'
   },
   foodNameStyle: {
-    fontWeight: "600",
-    fontSize: 22,
-    color: "white",
+      fontWeight: '600',
+      fontSize: 22,
+      color: 'white'
   },
   priceStyle: {
-    fontSize: 20,
-    color: "white",
+      fontSize: 20,
+      color: 'white'
   },
   ratingContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center'
   },
   starRatingStyle: {
-    fontSize: 18,
-    color: "white",
+      fontSize: 18,
+      color: 'white'
   },
   noReviewContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: HEADER_MAX_HEIGHT - 32,
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingTop: HEADER_MAX_HEIGHT - 32
   },
   noReviewFirstText: {
-    color: "#888888",
-    fontSize: 18,
+      color: '#888888',
+      fontSize: 18
   },
   noReivewSecondText: {
-    color: "#888888",
+      color: '#888888'
   },
   saveArea: {
-    flex: 1,
-    backgroundColor: "#ffffff",
+      flex: 1,
+      backgroundColor: '#ffffff',
   },
   card: {
-    flexDirection: "row",
-    alignItems: "center",
-    shadowColor: "#402583",
-    backgroundColor: "#ffffff",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
+      flexDirection: 'row',
+      alignItems: 'center',
+      shadowColor: '#402583',
+      backgroundColor: '#ffffff',
+      shadowOffset: {
+          width: 0,
+          height: 0,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      elevation: 1,
+      borderRadius: 10,
+      marginHorizontal: 12,
+      marginTop: 12,
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+  },
+  header: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: '#ffffff',
+      overflow: 'hidden',
+      height: HEADER_MAX_HEIGHT,
+  },
+  headerBackground: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      width: null,
+      height: HEADER_MAX_HEIGHT,
+      resizeMode: 'cover',
+  },
+  titleBar: (isAndroid) => ({
+      marginTop: 40,
+      height: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      paddingBottom: isAndroid ? 15 : 0
+  }),
+  title: {
+      color: 'black',
+      fontSize: 20,
+  },
+  avatar: {
+      height: 54,
+      width: 54,
+      resizeMode: 'contain',
+      borderRadius: 54 / 2,
+  },
+  fullNameText: {
+      fontSize: 16,
+      marginLeft: 24,
+  },
+  backButton: (isAndroid) => ({
+      position: 'absolute',
+      left: 16,
+      right: 0,
+      top: isAndroid ? 46 : 50,
+      zIndex: 1
+  }),
+  backButtonImage: {
+      width: 24,
+      height: 24
   },
   androidViewRestuarantButton: (deviceHeight, deviceWdith) => ({
-    position: "absolute",
-    // Device height - height of button - bottom margin that we want to get top margin
-    top: deviceHeight - 54 - 76,
-    // Device width - width of button / 2 to get left margin
-    left: (deviceWdith - 343) / 2,
-    height: 54,
-    width: 343,
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
+      position: 'absolute',
+      // Device height - height of button - bottom margin that we want to get top margin
+      top: deviceHeight - 54 - 76,
+      // Device width - width of button / 2 to get left margin
+      left: (deviceWdith - 343) / 2,
+      height: 54,
+      width: 343,
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around'
   }),
   iosViewRestuarantButton: (deviceHeight, deviceWdith) => ({
-    position: "absolute",
-    // Device height - height of button - bottom margin that we want to get top margin
-    top: deviceHeight - 54 - 76,
-    // Device width - width of button / 2 to get left margin
-    left: (deviceWdith - 343) / 2,
-    height: 54,
-    width: 343,
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
+      position: 'absolute',
+      // Device height - height of button - bottom margin that we want to get top margin
+      top: deviceHeight - 54 - 76,
+      // Device width - width of button / 2 to get left margin
+      left: (deviceWdith - 343) / 2,
+      height: 54,
+      width: 343,
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around'
   }),
   addReviewButton: {
-    backgroundColor: "#F88585",
-    height: 54,
-    width: 169,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+      backgroundColor: '#F88585',
+      height: 54,
+      width: 169,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center'
   },
   viewRestuarantButton: {
-    height: 54,
-    width: 169,
-    backgroundColor: "white",
-    borderRadius: 10,
-    borderColor: "#F88585",
-    borderStyle: "solid",
-    borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
+      height: 54,
+      width: 169,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      borderColor: '#F88585',
+      borderStyle: 'solid',
+      borderWidth: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
   },
   addReviewButtonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "600",
+      color: 'white',
+      fontSize: 18,
+      fontWeight: '600'
   },
   viewRestuarantButtonText: {
-    color: "#F88585",
-    fontSize: 18,
-    fontWeight: "600",
-  },
+      color: '#F88585',
+      fontSize: 18,
+      fontWeight: '600'
+  }
 });
 
 export default FoodReviews;
