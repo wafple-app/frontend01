@@ -35,7 +35,7 @@ const AddReviewScreen = (props) => {
           marginBottom: 10,
           marginRight: (index + 1) % 3 === 0 ? 0 : 10,
         }}
-        onPress={() => navigation.navigate("FoodDetail", item)}
+        onPress={() => navigation.navigate("Add Review", item)}
       >
         <View
           style={{
@@ -75,9 +75,16 @@ const AddReviewScreen = (props) => {
         }}
       >
         <Image source={require("../../assets/no_restaurant.png")} />
-        <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
-          Add Restaurant
-        </Text>
+        <TouchableOpacity
+          key={"link"}
+          onPress={() => {
+            navigation.navigate("Add Restaurant", navigation);
+          }}
+        >
+          <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
+            Add Restaurant
+          </Text>
+        </TouchableOpacity>
       </View>
     ) : (
       results.map((item, index) => {
@@ -92,7 +99,7 @@ const AddReviewScreen = (props) => {
               marginRight: (index + 1) % 3 === 0 ? 0 : 10,
             }}
             onPress={() => {
-              navigation.navigate("FoodDetail", item);
+              navigation.navigate("Add Review", item);
             }}
           >
             <View

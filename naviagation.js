@@ -9,6 +9,8 @@ import EditProfile from "./src/pages/Profile/EditProfile";
 import FoodDetail from "./src/pages/Menu/FoodDetail";
 import UserDetail from "./src/pages/Detail/UserDetail";
 import RestaurantDetail from "./src/pages/Restaurant/RestaurantDetail";
+import CreateReview from "./src/pages/Review/CreateReview";
+import CreateRestaurant from "./src/pages/Review/CreateRestaurant";
 import { Provider as ReduxProvider } from "react-redux";
 import { Provider as PaperProvider } from "react-native-paper";
 
@@ -60,6 +62,16 @@ const RootNaviagation = () => {
               name="FoodDetail"
               component={FoodDetail}
               options={navigationOptions.foodDetailOptions}
+            />
+            <Stack.Screen
+              name="Add Review"
+              component={CreateReview}
+              options={navigationOptions.CreateReview}
+            />
+            <Stack.Screen
+              name="Add Restaurant"
+              component={CreateRestaurant}
+              options={navigationOptions.CreateRestaurant}
             />
             <Stack.Screen
               name="RestaurantDetail"
@@ -119,5 +131,15 @@ const navigationOptions = {
   },
   restaurantDetailOptions: {
     headerShown: false,
+  },
+  CreateReview: {
+    headerStyle: {
+      backgroundColor: "white",
+    },
+  },
+  CreateRestaurant: {
+    headerStyle: {
+      backgroundColor: "white",
+    },
   },
 };

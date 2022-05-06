@@ -16,7 +16,7 @@ import { TextInput } from "react-native-paper";
 import StarRating from "../../components/StarRating";
 import StarRatingAnimate from "../../components/StarRatingAnimate";
 
-const AddReviewScreen = (props) => {
+const CreateReview = (props) => {
   const { navigation } = props;
   const [isAndroid, setIsAndroid] = useState(false);
   const platform = useSelector((state) => state.platformReducer.platform.OS);
@@ -121,7 +121,7 @@ const AddReviewScreen = (props) => {
   );
 };
 
-export default AddReviewScreen;
+export default CreateReview;
 const styles = StyleSheet.create({
   ...globalStyles,
   retaurantView: {
