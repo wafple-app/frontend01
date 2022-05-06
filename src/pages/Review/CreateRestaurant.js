@@ -31,13 +31,13 @@ const CreateRestaurant = (props) => {
   const showConfirmDialog = () => {
     return Alert.alert("Want to add Review?", "you will move to review Page", [
       {
+        text: "Cancel",
+      },
+      {
         text: "Continue",
         onPress: () => {
           navigation.navigate("Add Review");
         },
-      },
-      {
-        text: "Cancel",
       },
     ]);
   };

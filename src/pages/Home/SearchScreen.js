@@ -88,13 +88,19 @@ const SearchScreen = (props) => {
         }}
       >
         <Image source={require("../../assets/no_restaurant.png")} />
-        <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
-          Add Restaurant
-        </Text>
+        <TouchableOpacity
+          key={"link"}
+          onPress={() => {
+            navigation.navigate("Add Restaurant", { navigation });
+          }}
+        >
+          <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
+            Add Restaurant
+          </Text>
+        </TouchableOpacity>
       </View>
     ) : (
       results.map((item, index) => {
-        console.log("item:", item);
         return (
           <TouchableOpacity
             key={"Item#" + index}

@@ -78,7 +78,7 @@ const AddReviewScreen = (props) => {
         <TouchableOpacity
           key={"link"}
           onPress={() => {
-            navigation.navigate("Add Restaurant", navigation);
+            navigation.navigate("Add Restaurant", { navigation });
           }}
         >
           <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
@@ -88,7 +88,6 @@ const AddReviewScreen = (props) => {
       </View>
     ) : (
       results.map((item, index) => {
-        console.log("item:", item);
         return (
           <TouchableOpacity
             key={"Item#" + index}
