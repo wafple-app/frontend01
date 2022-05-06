@@ -83,12 +83,14 @@ const SearchScreen = (props) => {
     results.length === 0 ? (
       <View
         style={{
-          flex: 1,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         <Image source={require("../../assets/no_restaurant.png")} />
+        <Text style={{ textDecorationLine: "underline", marginTop: 10 }}>
+          Add Restaurant
+        </Text>
       </View>
     ) : (
       results.map((item, index) => {
@@ -154,17 +156,9 @@ const SearchScreen = (props) => {
           />
         </View>
 
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <View>
           {search !== "" ? (
-            <ScrollView style={{ flex: 1, width: "100%" }}>
-              {searchResults}
-            </ScrollView>
+            <ScrollView>{searchResults}</ScrollView>
           ) : (
             <ScrollView>
               <View
@@ -183,7 +177,7 @@ const SearchScreen = (props) => {
                     flexGrow: 1,
                     flexDirection: "row",
                     justifyContent: "flex-start",
-                    paddingTop: 24,
+                    paddingTop: 16,
                   }}
                 >
                   {menus}
