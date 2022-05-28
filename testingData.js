@@ -106,6 +106,7 @@ export const restaurantMenus = [
 export const user = {
   first_name: "Yeon Jae",
   last_name: "Kim",
+  user_profile_avatar: 'wafple_profile_icon_default',
   email: "yeonjaekim@gmail.com",
   token: "randomToken",
 };
