@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Text,
@@ -6,13 +6,13 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Image,
   TouchableOpacity,
   Dimensions,
   Alert,
 } from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import globalStyles from "../../styles/common";
-import { TextInput } from "react-native-paper";
+import { TextInput, Dialog, Portal, Button } from "react-native-paper";
 
 const CreateRestaurant = (props) => {
   const { navigation } = props;
@@ -22,6 +22,12 @@ const CreateRestaurant = (props) => {
 
   const deviceHeight = Dimensions.get("window").height;
   const deviceWdith = Dimensions.get("window").width;
+
+  const [visible, setVisible] = React.useState(false);
+
+  const showDialog = () => setVisible(true);
+
+  const hideDialog = () => setVisible(false);
 
   useEffect(() => {
     setIsAndroid(platform === "android");
@@ -50,22 +56,29 @@ const CreateRestaurant = (props) => {
         {/* This Part Below Needs to be modified  */}
         <View style={styles.reviewView}>
           <Text style={{ color: "grey", marginBottom: 5 }}>Photo</Text>
-          <View
-            style={{
-              overflow: "hidden",
-              borderRadius: 10,
-              width: 120,
-              height: 120,
-              marginBottom: 10,
-            }}
-          >
-            <Image
+          <TouchableOpacity style={{ border: "none" }} onPress={showDialog}>
+            <View
+              style={{
+                height: 150,
+                borderStyle: "dashed",
+                borderRadius: 10,
+                borderWidth: 2,
+                borderColor: "grey",
+                marginBottom: 10,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <FontAwesome name={"image"} size={32} />
+
+              {/* <Image
               style={{ width: 120, height: 120 }}
               source={{
                 uri: "https://images.unsplash.com/photo-1615679953957-340c5cb38bd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RhcmJ1Y2tzJTIwY29mZmVlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
               }}
-            />
-          </View>
+            /> */}
+            </View>
+          </TouchableOpacity>
 
           <Text style={{ color: "grey", marginBottom: 5 }}>Name</Text>
           <TextInput
@@ -100,6 +113,30 @@ const CreateRestaurant = (props) => {
           />
         </View>
       </ScrollView>
+
+      <View>
+        <Portal>
+          <Dialog visible={visible} onDismiss={hideDialog}>
+            <View style={styles.panel}>
+              <View style={{ alignItems: "center" }}>
+                <Text style={styles.panelTitle}>Upload Photo</Text>
+                <Text style={styles.panelSubtitle}>
+                  Choose the restaurant Picture
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.panelButton}>
+                <Text style={styles.panelButtonTitle}>Take Photo</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.panelButton}>
+                <Text style={styles.panelButtonTitle}>Choose From Library</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.panelButton} onPress={hideDialog}>
+                <Text style={styles.panelButtonTitle}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </Dialog>
+        </Portal>
+      </View>
 
       <View style={styles.alertScreen}>{showBox}</View>
 
@@ -217,5 +254,33 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  panel: {
+    padding: 20,
+    backgroundColor: "#FFFFFF",
+    paddingTop: 20,
+  },
+  panelTitle: {
+    fontSize: 27,
+    height: 35,
+  },
+  panelSubtitle: {
+    fontSize: 14,
+    color: "gray",
+    height: 30,
+    marginBottom: 10,
+  },
+  panelButton: {
+    padding: 13,
+    borderRadius: 10,
+    backgroundColor: "#F88585",
+    alignItems: "center",
+    marginVertical: 7,
+  },
+  panelButtonTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "white",
   },
 });
