@@ -9,21 +9,24 @@ import {
   TouchableOpacity,
   Dimensions,
   Alert,
+  Image,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import globalStyles from "../../styles/common";
-import { TextInput, Dialog, Portal, Button } from "react-native-paper";
+import { TextInput, Dialog, Portal } from "react-native-paper";
+
+import AddImage from "../../components/AddImage";
 
 const CreateRestaurant = (props) => {
   const { navigation } = props;
   const [isAndroid, setIsAndroid] = useState(false);
   const [showBox, setShowBox] = useState(true);
   const platform = useSelector((state) => state.platformReducer.platform.OS);
+  const [visible, setVisible] = React.useState(false);
+  const [pickedImagePath, setPickedImagePath] = useState("");
 
   const deviceHeight = Dimensions.get("window").height;
   const deviceWdith = Dimensions.get("window").width;
-
-  const [visible, setVisible] = React.useState(false);
 
   const showDialog = () => setVisible(true);
 
@@ -35,17 +38,21 @@ const CreateRestaurant = (props) => {
   }, []);
 
   const showConfirmDialog = () => {
-    return Alert.alert("Want to add Review?", "you will move to review Page", [
-      {
-        text: "Cancel",
-      },
-      {
-        text: "Continue",
-        onPress: () => {
-          navigation.navigate("Add Review");
+    return Alert.alert(
+      "Want to add Restaurant?",
+      "you will move to review Page",
+      [
+        {
+          text: "Cancel",
         },
-      },
-    ]);
+        {
+          text: "Continue",
+          onPress: () => {
+            navigation.navigate("Add Review");
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -56,29 +63,31 @@ const CreateRestaurant = (props) => {
         {/* This Part Below Needs to be modified  */}
         <View style={styles.reviewView}>
           <Text style={{ color: "grey", marginBottom: 5 }}>Photo</Text>
-          <TouchableOpacity style={{ border: "none" }} onPress={showDialog}>
-            <View
-              style={{
-                height: 150,
-                borderStyle: "dashed",
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: "grey",
-                marginBottom: 10,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <FontAwesome name={"image"} size={32} />
 
-              {/* <Image
-              style={{ width: 120, height: 120 }}
-              source={{
-                uri: "https://images.unsplash.com/photo-1615679953957-340c5cb38bd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RhcmJ1Y2tzJTIwY29mZmVlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-              }}
-            /> */}
+          {pickedImagePath === "" ? (
+            <TouchableOpacity style={{ border: "none" }} onPress={showDialog}>
+              <View
+                style={{
+                  height: 150,
+                  borderStyle: "dashed",
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  borderColor: "grey",
+                  marginBottom: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FontAwesome name={"image"} size={32} />
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.imageContainer}>
+              <TouchableOpacity onPress={showDialog}>
+                <Image source={{ uri: pickedImagePath }} style={styles.image} />
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
+          )}
 
           <Text style={{ color: "grey", marginBottom: 5 }}>Name</Text>
           <TextInput
@@ -117,23 +126,11 @@ const CreateRestaurant = (props) => {
       <View>
         <Portal>
           <Dialog visible={visible} onDismiss={hideDialog}>
-            <View style={styles.panel}>
-              <View style={{ alignItems: "center" }}>
-                <Text style={styles.panelTitle}>Upload Photo</Text>
-                <Text style={styles.panelSubtitle}>
-                  Choose the restaurant Picture
-                </Text>
-              </View>
-              <TouchableOpacity style={styles.panelButton}>
-                <Text style={styles.panelButtonTitle}>Take Photo</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.panelButton}>
-                <Text style={styles.panelButtonTitle}>Choose From Library</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.panelButton} onPress={hideDialog}>
-                <Text style={styles.panelButtonTitle}>Cancel</Text>
-              </TouchableOpacity>
-            </View>
+            <AddImage
+              hideDialog={hideDialog}
+              pickedImagePath={pickedImagePath}
+              setPickedImagePath={setPickedImagePath}
+            />
           </Dialog>
         </Portal>
       </View>
@@ -146,7 +143,6 @@ const CreateRestaurant = (props) => {
             ? styles.androidViewRestuarantButton(deviceHeight, deviceWdith)
             : styles.iosViewRestuarantButton(deviceHeight, deviceWdith)
         }
-        // TODO: Do something here.
         onPress={() => showConfirmDialog()}
       >
         <Text style={styles.viewRestaurantButtonText}>Add Restaurant</Text>
@@ -156,6 +152,7 @@ const CreateRestaurant = (props) => {
 };
 
 export default CreateRestaurant;
+
 const styles = StyleSheet.create({
   ...globalStyles,
   retaurantView: {
@@ -202,7 +199,7 @@ const styles = StyleSheet.create({
   reviewView: {
     backgroundColor: "white",
     padding: 10,
-    height: 1000,
+    height: 600,
   },
   ratingIcon: {
     height: 18,
@@ -256,31 +253,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  panel: {
-    padding: 20,
-    backgroundColor: "#FFFFFF",
-    paddingTop: 20,
+  imageContainer: {
+    marginBottom: 20,
   },
-  panelTitle: {
-    fontSize: 27,
-    height: 35,
-  },
-  panelSubtitle: {
-    fontSize: 14,
-    color: "gray",
-    height: 30,
-    marginBottom: 10,
-  },
-  panelButton: {
-    padding: 13,
-    borderRadius: 10,
-    backgroundColor: "#F88585",
-    alignItems: "center",
-    marginVertical: 7,
-  },
-  panelButtonTitle: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "white",
+  image: {
+    width: "100%",
+    height: 200,
+    resizeMode: "contain",
   },
 });

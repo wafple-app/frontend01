@@ -4,7 +4,7 @@ import { View, TouchableWithoutFeedback, Animated } from "react-native";
 
 const StarRatingAnimate = () => {
   let stars = [];
-  const [rating, setRating] = useState(2);
+  const [rating, setRating] = useState(5);
 
   const rate = (star) => {
     setRating(star);

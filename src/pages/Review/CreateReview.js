@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Text,
@@ -9,17 +9,28 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from "react-native";
 import globalStyles from "../../styles/common";
-import { TextInput } from "react-native-paper";
+import { TextInput, Dialog, Portal } from "react-native-paper";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import StarRating from "../../components/StarRating";
 import StarRatingAnimate from "../../components/StarRatingAnimate";
+
+import AddImage from "../../components/AddImage";
 
 const CreateReview = (props) => {
   const { navigation } = props;
   const [isAndroid, setIsAndroid] = useState(false);
   const platform = useSelector((state) => state.platformReducer.platform.OS);
+  const [showBox, setShowBox] = useState(true);
+  const [visible, setVisible] = React.useState(false);
+  const [pickedImagePath, setPickedImagePath] = useState("");
+
+  const showDialog = () => setVisible(true);
+
+  const hideDialog = () => setVisible(false);
 
   const deviceHeight = Dimensions.get("window").height;
   const deviceWdith = Dimensions.get("window").width;
@@ -29,11 +40,25 @@ const CreateReview = (props) => {
     // Get menus via API
   }, []);
 
+  const showConfirmDialog = () => {
+    return Alert.alert("Want to add Review?", "you will move to review Page", [
+      {
+        text: "Cancel",
+      },
+      {
+        text: "Continue",
+        onPress: () => {
+          navigation.navigate("LandingPageNavigation");
+        },
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView
       style={[styles.defaultBackground, { backgroundColor: "#F7F7F7" }]}
     >
-      <ScrollView style={styles.scrollView}>
+      <ScrollView>
         <View style={styles.retaurantView}>
           <View style={styles.restaurantImgContainer}>
             <View style={styles.restaurantImgView}>
@@ -72,7 +97,8 @@ const CreateReview = (props) => {
         {/* This Part Below Needs to be modified  */}
         <View style={styles.reviewView}>
           <Text style={{ color: "grey", marginBottom: 5 }}>Photo</Text>
-          <View
+
+          {/* <View
             style={{
               overflow: "hidden",
               borderRadius: 10,
@@ -87,7 +113,33 @@ const CreateReview = (props) => {
                 uri: "https://images.unsplash.com/photo-1615679953957-340c5cb38bd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3RhcmJ1Y2tzJTIwY29mZmVlfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
               }}
             />
-          </View>
+          </View> */}
+
+          {pickedImagePath === "" ? (
+            <TouchableOpacity style={{ border: "none" }} onPress={showDialog}>
+              <View
+                style={{
+                  height: 150,
+                  borderStyle: "dashed",
+                  borderRadius: 10,
+                  borderWidth: 2,
+                  borderColor: "grey",
+                  marginBottom: 10,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FontAwesome name={"image"} size={32} />
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.imageContainer}>
+              <TouchableOpacity onPress={showDialog}>
+                <Image source={{ uri: pickedImagePath }} style={styles.image} />
+              </TouchableOpacity>
+            </View>
+          )}
+
           <Text style={{ color: "grey", marginBottom: 10 }}>Rating</Text>
           <View style={{ height: 30, marginBottom: 10 }}>
             <StarRatingAnimate />
@@ -104,16 +156,30 @@ const CreateReview = (props) => {
           />
         </View>
       </ScrollView>
+
+      {visible && (
+        <View>
+          <Portal>
+            <Dialog visible={visible} onDismiss={hideDialog}>
+              <AddImage
+                hideDialog={hideDialog}
+                pickedImagePath={pickedImagePath}
+                setPickedImagePath={setPickedImagePath}
+              />
+            </Dialog>
+          </Portal>
+        </View>
+      )}
+
+      {!showBox && <View style={styles.alertScreen}>{showBox}</View>}
+
       <TouchableOpacity
         style={
           isAndroid
             ? styles.androidViewRestuarantButton(deviceHeight, deviceWdith)
             : styles.iosViewRestuarantButton(deviceHeight, deviceWdith)
         }
-        // TODO: Do something here.
-        onPress={() => {
-          console.log("do something");
-        }}
+        onPress={() => showConfirmDialog()}
       >
         <Text style={styles.viewRestaurantButtonText}>Save Review</Text>
       </TouchableOpacity>
@@ -168,7 +234,7 @@ const styles = StyleSheet.create({
   reviewView: {
     backgroundColor: "white",
     padding: 10,
-    height: 1000,
+    height: 600,
   },
   ratingIcon: {
     height: 18,
@@ -214,5 +280,19 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "600",
+  },
+
+  alertScreen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imageContainer: {
+    marginBottom: 20,
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    resizeMode: "contain",
   },
 });
