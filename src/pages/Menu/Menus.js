@@ -1,8 +1,8 @@
-import React from "react";
-import { Text, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, ScrollView, Image, TouchableOpacity, Dimensions, ActivityIndicator } from "react-native";
+import Constants from 'expo-constants';
 import Menu from "./FoodReviews";
 import { menus as dummyMenus } from "../../../testingData";  // Make sure remove this.
-import {Dimensions} from 'react-native';
 
 { /* Hailey: make percent_100, screenWidth, screenHeight as common variables*/ }
 const percent_100 = '100%';
@@ -11,7 +11,30 @@ const screenHeight = Dimensions.get('window').height;
 // This Menus component only have one option for number of columns. That is 3.
 const Menus = props => {
     const { navigation } = props;
-    const menus = dummyMenus.map((item, index) => {
+    const [fetchedMenus, setFetchedMenus] = useState([]);
+    const [isMenuLoaded, setIsMenuLoaded] = useState(false);
+
+    const getMenus = async () => {
+        const { API_BASE_URL } = Constants.manifest.extra.env;
+        
+        try {
+            fetch(`${API_BASE_URL}/foods`)
+                .then(response => response.json())
+                .then((json) => {
+                    setFetchedMenus(json.result);
+                });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsMenuLoaded(true);
+        }
+    };
+
+    useEffect(() => {
+        getMenus();
+    }, []);
+
+    const menus = fetchedMenus.map((item, index) => {
         return (
             <TouchableOpacity
                 key={'menuItem#'+index}
@@ -27,7 +50,7 @@ const Menus = props => {
             >
                 <View>
                     <View style={{overflow:'hidden', paddingBottom: percent_100, borderRadius: 5}}>
-                        <Image source={item.food_url} style={{ width: percent_100, paddingBottom: percent_100, position: 'absolute', left: 0, borderRadius: 5}} />
+                        <Image source={{ uri: item.food_url }} style={{ width: percent_100, paddingBottom: percent_100, position: 'absolute', left: 0, borderRadius: 5}} />
                     </View>
                     {/* Hailey: need to change the Text style to styles.font14_R */}
                     <Text style={{ fontSize: 14, color: '#444', lineHeight: 24}}>{item.food_name}</Text>
@@ -55,10 +78,18 @@ const Menus = props => {
                     justifyContent: 'flex-start',
                     paddingTop: 24
                 }}>
-                    {menus}
+                    {isMenuLoaded ?
+                        menus
+                    :
+                        <View>
+                            <ActivityIndicator size="large" color="#EE5764" />
+                            <Text>Loading</Text>
+                        </View>
+                    }
                 </View>
             </View>
         </ScrollView>
+        
     );
 };
 
