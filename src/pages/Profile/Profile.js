@@ -8,6 +8,9 @@ import ProfilePicture from '../../components/profilePicture';
 import { StackActions } from '@react-navigation/native';
 import FoodReview from '../Menu/FoodReview';
 import { menuReviews as reviews } from '../../../testingData';
+import Constants from 'expo-constants';
+
+console.log('constants:', Constants.manifest.extra);
 
 const Profile = ({ navigation, route }) => {
     const isLoggedIn = useSelector(state => state.userReducer.user) !== undefined;
