@@ -1,4 +1,6 @@
-{
+import 'dotenv/config';
+
+export default {
   "expo": {
     "name": "frontend01",
     "slug": "frontend01",
@@ -27,6 +29,9 @@
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "env": process.env
     }
   }
-}
+};
