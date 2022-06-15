@@ -2,12 +2,13 @@ import { Text, View, Image, StyleSheet } from "react-native";
 import StarRating from "../../components/StarRating";
 
 const FoodReview = (props) => {
-  const { food_url, user_icon, user_name, rating, ratingCount, review } = props;
+  const { food_url, user_icon, user_name, rating, ratingCount, description } =
+    props;
 
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
-        <Image style={styles.reviewImage} source={food_url} />
+        <Image style={styles.reviewImage} source={{ uri: food_url }} />
       </View>
       <View style={styles.rightContainer}>
         <View style={styles.reviewTextHeader}>
@@ -28,7 +29,7 @@ const FoodReview = (props) => {
           />
         </View>
         <View style={styles.reviewContainer}>
-          <Text>{review}</Text>
+          <Text>{description}</Text>
         </View>
       </View>
     </View>

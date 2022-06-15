@@ -21,7 +21,6 @@ const HomeScreen = (props) => {
 
   const getCurrLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    console.log("status:", status);
     if (status !== "granted") {
       setErrorMsg("Permission to access location was denied");
       return;
@@ -34,8 +33,7 @@ const HomeScreen = (props) => {
   useEffect(() => {
     getCurrLocation();
   }, []);
-  console.log("location:", location);
-  console.log("errorMsg:", errorMsg);
+
   return (
     <SafeAreaView style={styles.defaultBackground}>
       {/* main Top bar -start*/}
