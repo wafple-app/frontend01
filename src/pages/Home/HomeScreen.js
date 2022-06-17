@@ -12,6 +12,7 @@ import Menus from "../Menu/Menus";
 import globalStyles from "../../styles/common";
 
 const HomeScreen = (props) => {
+  const { navigation } = props;
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   // Need to fix the default to current location
@@ -20,7 +21,6 @@ const HomeScreen = (props) => {
 
   const getCurrLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    console.log("status:", status);
     if (status !== "granted") {
       setErrorMsg("Permission to access location was denied");
       return;
@@ -33,8 +33,7 @@ const HomeScreen = (props) => {
   useEffect(() => {
     getCurrLocation();
   }, []);
-  console.log("location:", location);
-  console.log("errorMsg:", errorMsg);
+
   return (
     <SafeAreaView style={styles.defaultBackground}>
       {/* main Top bar -start*/}
@@ -74,6 +73,13 @@ const HomeScreen = (props) => {
         <Menus {...props} />
       </View>
       {/* main menues -end*/}
+
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("Search Restaurant")}
+      >
+        <Text style={styles.addButtonText}>+</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -170,6 +176,23 @@ const styles = StyleSheet.create({
     fontFamily: "SourceSansPro-Regular",
     color: "#888",
     fontSize: 14,
+  },
+
+  addButton: {
+    backgroundColor: "#F88585",
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 35,
+    right: 35,
+    height: 60,
+    width: 60,
+  },
+  addButtonText: {
+    color: "white",
+    fontSize: 30,
+    fontWeight: "600",
   },
 });
 
